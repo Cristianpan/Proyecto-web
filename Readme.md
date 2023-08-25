@@ -4,7 +4,7 @@
 
 | Nombre | <!-- --> |
 |--------|-|
-|Gamboa Nieto, Pablo|![perfil](/img/ProfilePicPablo2.jpeg)|
-|Pan Zaldivar, Cristian David| ![perfil](/img/cristianPan.jpeg)|
-|Quevedo Zaldivar, Luis Jonathan|![perfil](/img/)|
-|Vazquéz Rodríguez, Diana Carolina|![perfil](/img/DianaVazquez.png)|
+|Gamboa Nieto, Pablo|<img src="./img/ProfilePicPablo2.jpeg" width="120" height="150">|
+|Pan Zaldivar, Cristian David| <img src="./img/cristianPan.jpeg" width="120" height="150"> |
+|Quevedo Zaldivar, Luis Jonathan| <img src="./img/Luis.jpeg" width="120" height="150">|
+|Vazquéz Rodríguez, Diana Carolina| <img src="./img/DianaVazquez.png" width="120" height="120"> |
