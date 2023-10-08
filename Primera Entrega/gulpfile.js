@@ -78,15 +78,6 @@ async function compileJavascript(isProduction = false) {
 }
 // ------------------------------------------------------------------- //
 
-// IMAGES
-// ------------------------------------------------------------------- //
-async function minifyImage(sourcePath, dist) {
-  return src(sourcePath)
-    .pipe(imagemin({ optimizationLevel: 3 }))
-    .pipe(dest(dist));
-}
-
-// ------------------------------------------------------------------- //
 
 // DELETE FILE
 // ------------------------------------------------------------------- //
