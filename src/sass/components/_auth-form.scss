@@ -37,7 +37,7 @@
             color: v.$white
         }
 
-        &:focus-visible  ~ .form__label {
+        &:focus-visible ~ .form__label {
             color: v.$white;
         }
     }
