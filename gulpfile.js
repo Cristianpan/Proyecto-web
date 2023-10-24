@@ -1,4 +1,4 @@
-const { src, dest, watch, task } = require("gulp");
+const { src, dest, watch, parallel, task } = require("gulp");
 const rename = require("gulp-rename");
 const plumber = require("gulp-plumber");
 
@@ -14,6 +14,9 @@ const del = require("del");
 const webpack = require("webpack-stream");
 const named = require("vinyl-named");
 
+//Browsersync
+const browserSync = require("browser-sync").create();
+
 //PATHS
 const inputPaths = {
   sass: `./src/sass/**/*.scss`,
@@ -24,6 +27,24 @@ const outputPaths = {
   css: `./public/assets/css`,
   js: `./public/assets/js`,
 };
+
+function serve() {
+  browserSync.init({
+    proxy: "http://localhost:8080",
+    port: 3000,
+    notify: true,
+    serveStaticOptions: {
+      cacheControl: false,
+    },
+  });
+  browserSync
+    .watch([
+      "public/**/css/*.css", 
+      "public/**/js/*.js", 
+      "app/Views/**/*.*",
+    ])
+    .on("change", browserSync.reload);
+}
 
 // CSS
 async function compileSass(isProduction = false) {
@@ -78,7 +99,6 @@ async function compileJavascript(isProduction = false) {
 }
 // ------------------------------------------------------------------- //
 
-
 // DELETE FILE
 // ------------------------------------------------------------------- //
 async function clean(filepath = "") {
@@ -92,14 +112,18 @@ function watchFiles() {
   // CSS
   const { sass: inputCss, js: inputJs } = inputPaths;
   const { css: outputCss, js: outputJs } = outputPaths;
-  watch(inputCss, compileSass);
+  watch(inputCss, async function () {
+    await compileSass();
+  });
   watch(inputCss).on("unlink", async function (path, stats) {
     const deletedFiles = await clean(path, outputCss);
     deletedFiles.forEach((file) => console.log(`Deleted ${file}`));
   });
 
   // JS
-  watch(inputJs, compileJavascript);
+  watch(inputJs, async function () {
+    await compileJavascript();
+  });
   watch(inputJs).on("unlink", async function (path, stats) {
     const deletedFiles = await clean(path, outputJs);
     deletedFiles.forEach((file) => console.log(`Deleted ${file}`));
@@ -110,9 +134,11 @@ function compileAssets(isProduction = false) {
   return async function devTasks() {
     await compileSass(isProduction);
     await compileJavascript(isProduction);
-    if (!isProduction) watchFiles();
+    if (!isProduction) {
+      watchFiles();
+    }
   };
 }
 
-task("dev", compileAssets());
+task("dev", parallel(compileAssets(), serve));
 task("build", compileAssets(true));
