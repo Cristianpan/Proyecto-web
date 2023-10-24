@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "gulp dev",
+    "dev": "concurrently -n php,gulp -c magenta,cyan \"php spark serve\" \"gulp dev\"",
     "build": "gulp build"
   },
   "author": "",
