@@ -2,8 +2,10 @@
     <?php for($i = 0; $i < 20; $i++):?>
     <div class="gallery__element">
         <a href="#" class="gallery__imageContainer">
-            <img class="gallery__image" src="/assets/images/gallery/<?= rand(1,9)?>.jpg" alt="galeria imagen" loading="lazy">
-            <p class="gallery__autor">Diana Vazquez</p>
+            <img class="gallery__image" src="/assets/images/gallery/<?= rand(1,8)?>.jpg" alt="galeria imagen" loading="lazy">
+            <div class="gallery__autor">
+                <p>Diana Vazquez</p>
+            </div>
         </a>
 
         <div class="gallery__info">
