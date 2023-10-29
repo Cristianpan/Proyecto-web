@@ -1,159 +1,103 @@
 @use '../base/mixins' as m;
-@use '../base/variables' as v; 
+@use '../base/variables' as v;
 @use '../components/gallery';
 @use '../components/navigationBar';
 @use '../components/searchBar';
 @use '../components/personalBlocks';
 
-.profile{
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 5rem;
+
     width: 100%;
-    height: 30vh;
-    overflow: hidden;
-    min-height: 600px;
+    height: auto;
+    min-height: 60vh;
     position: relative;
-
-    @include m.tablet {
-        height: 60vh;
-    }
-
-    @include m.desktop {
-        height: 90vh;
-    }
-
-    &__editButton{
-        position: absolute;
-        right: 3%;
-        bottom: 3%;
-        
-        button{
-            background-color:  rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            border: none;
     
-            img{
-                width: 20%;
-            }
-        
-            span{
-                margin-left: 12pt;
-                color: white;
-                font-weight: bold;
-            }
-
-        }
-
-        
+    @include m.tablet {
+        min-height: calc(100vh - 6.5rem)
     }
-
-    &__background{
+    
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 95%;
         height: 100%;
         object-fit: cover;
         object-position: center;
     }
-
     
-
-    &__datas{
-        width: 70%;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-
+    &__content {
+        z-index: 1;
+    }
+    
+    &__picture {
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 20rem;
         @include m.tablet {
-            width: 50%;
-            top: 50%;
-        }
-
-
-        @include m.desktop {
-            width: 30%;
-            top: 55%;
-        }
-
-        
-      
-
-        &__picture{
-            margin: auto;
-            width: 40vw;
-
-
-            @include m.desktop {
-                width: 20vw;
-            }
-            
-            img{
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                //para no deformarlo
-                object-fit: cover;
-                object-position: center top;
-            }
-        }
-
-        &__name{
-            text-align: center;
-            color: v.$white;
-            
-        }
-
-        &__info{
-            margin: auto;
-            margin-top: 1rem;
-            width: 60%;
-            height: auto;
-            background-color: v.$white;
-            border-radius: 10px;
-            display: flex;
-
-            
-            
-
-            &__numbers{
-                flex: 1;
-                text-align: center;
-                width: 50%;
-                padding-top: 10pt;
-                padding-bottom: 10pt;
-            }
-
-            p{
-                font-size: 10pt;
-            }
-            
-
+            width: 30rem;
         }
     }
 
+    &__name {
+        font-size: 3rem;
+        margin: 2rem 0;
+        text-align: center;
+        color: v.$gray;
 
-}
+        @include m.tablet {
+            font-size: 3.4rem;
+        }
+    }
     
+    &__info-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 2rem; 
+        margin: 0 auto;
 
-.aboutme{
-    width: 100%;
-    height: auto;
-    padding: 8%;
+        background-color: v.$white;
+        border-radius: 2rem;
 
-    &__name{
+        @include m.tablet {
+            gap: 5rem;
+        }
+
+    }
+    
+    &__info-text{
+        font-size: 1.6rem;
+        text-align: center;
+        &--bolder {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+    }
+}
+
+
+.about {
+    margin: 8rem 7% 5rem 7%;
+
+    &__name {
+        font-size: 6rem;
         color: v.$brown;
     }
 
-    &__job{
-        font-weight: bold;
+    &__job {
+        font-weight: 900;
+        margin: 2rem 0;
     }
 
-    p{
+    p {
         font-size: 15pt;
         margin-top: 8pt;
     }
-}
-
-.profile__editButton:hover{
-    background-color:  rgba(255, 255, 255, 0.5);
 }
