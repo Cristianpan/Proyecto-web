@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="/assets/css/profile.min.css" />
 <?php $this->endSection() ?>
 
+<?php $this->section("js") ?> 
+<script src="/assets/js/personalBlocks.min.js"></script>
+<?php $this->endSection() ?>
+
 
 <?php $this->section("content") ?>
 <?= view("components/navigationBar") ?>
@@ -47,8 +51,6 @@
 </div>
 
 </div>
-<div>
-
 
     <?= view("components/personalBlocks") ?>
     <h2>Catálogo</h2>
