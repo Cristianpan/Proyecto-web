@@ -24,3 +24,10 @@
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
 }
+
+@mixin clip-text($maxLines, $orient: vertical){
+    display: -webkit-box;
+    -webkit-line-clamp: $maxLines;
+    -webkit-box-orient: $orient;
+    overflow: hidden;
+}
