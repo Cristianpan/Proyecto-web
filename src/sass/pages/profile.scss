@@ -1,7 +1,103 @@
 @use '../base/mixins' as m;
-@use '../base/variables' as v; 
+@use '../base/variables' as v;
 @use '../components/gallery';
 @use '../components/navigationBar';
 @use '../components/searchBar';
 @use '../components/personalBlocks';
 
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 5rem;
+
+    width: 100%;
+    height: auto;
+    min-height: 60vh;
+    position: relative;
+    
+    @include m.tablet {
+        min-height: calc(100vh - 6.5rem)
+    }
+    
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    &__content {
+        z-index: 1;
+    }
+    
+    &__picture {
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 20rem;
+        @include m.tablet {
+            width: 30rem;
+        }
+    }
+
+    &__name {
+        font-size: 3rem;
+        margin: 2rem 0;
+        text-align: center;
+        color: v.$gray;
+
+        @include m.tablet {
+            font-size: 3.4rem;
+        }
+    }
+    
+    &__info-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem 2rem; 
+        margin: 0 auto;
+
+        background-color: v.$white;
+        border-radius: 2rem;
+
+        @include m.tablet {
+            gap: 5rem;
+        }
+
+    }
+    
+    &__info-text{
+        font-size: 1.6rem;
+        text-align: center;
+        &--bolder {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+    }
+}
+
+
+.about {
+    margin: 8rem 7% 5rem 7%;
+
+    &__name {
+        font-size: 6rem;
+        color: v.$brown;
+    }
+
+    &__job {
+        font-weight: 900;
+        margin: 2rem 0;
+    }
+
+    p {
+        font-size: 15pt;
+        margin-top: 8pt;
+    }
+}
