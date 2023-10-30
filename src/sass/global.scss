@@ -1,8 +1,10 @@
 @use 'base/normalize';
 @use 'base/variables' as v;
+
 @font-face {
     font-family: 'Lostar';
-    src: url('../fonts/Lostar.ttf') format('truetype'); /* Asegúrate de especificar la ruta correcta a tu archivo de fuente */
+    src: url('../fonts/Lostar.ttf') format('truetype');
+    /* Asegúrate de especificar la ruta correcta a tu archivo de fuente */
 }
 
 html {
@@ -22,7 +24,10 @@ body {
     color: v.$dark;
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
     margin: 0;
     line-height: 1.5;
 }
@@ -62,4 +67,19 @@ ul {
 input {
     border: none;
     outline: none;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+select {
+    outline: none;
+    appearance: none;
+}
+
+.container {
+    width: 86%;
+    margin: 0 auto;
 }
