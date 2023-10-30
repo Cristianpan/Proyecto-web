@@ -14,4 +14,5 @@ $routes->get('/auth/signup', 'CtrlAuth::signup');
 $routes->get('/user/profile', 'CtrlUserProfile::index'); 
 
 $routes->get('/art/item', 'CtrlArtItem::index'); 
+$routes->get('/art/cart', 'CtrlArtItem::cart'); 
 
