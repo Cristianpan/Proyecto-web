@@ -1,0 +1,55 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.personal-blocks {
+    width: 86%;
+    margin: 5rem auto;
+    overflow: hidden;
+    position: relative;
+
+    &__block {
+        border-radius: 1rem;
+        box-sizing: border-box;
+        padding: 5rem;
+        &--1 {
+            background-color: darken(v.$blueGreen,10);
+        }
+        &--2 {
+            background-color: v.$dark;
+        }
+        &--3 {
+            background-color: v.$orange;
+        }
+    }
+
+    &__title {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+        color: v.$white;
+        word-wrap: break-word;
+        word-break: break-all;
+        line-height: 1;
+    }
+
+    &__text {
+        color: v.$white;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        width: 100%;
+    }
+
+    .swiper-pagination-bullet {
+        background-color: v.$white;
+    }
+
+    .swiper-button-next::after, .swiper-button-prev::after {
+        font-size: 3rem;
+        font-weight: bold;
+        color: v.$gray; 
+        display: none;
+
+        @include m.tablet {
+            display: block;
+        }
+    }
+}

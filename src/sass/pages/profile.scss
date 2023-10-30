@@ -4,6 +4,7 @@
 @use '../components/navigationBar';
 @use '../components/searchBar';
 @use '../components/personalBlocks';
+@use '../plugins/swipper';
 
 .profile {
     display: flex;
