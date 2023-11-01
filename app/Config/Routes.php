@@ -18,5 +18,5 @@ $routes->get('/user/profile/edit', 'CtrlUserProfile::viewEdit');
 $routes->get('/art/item', 'CtrlArtItem::index'); 
 
 //Shop
-$routes->get('/shop/car/pay', 'CtrlArtItem::index'); 
+$routes->get('/shop/car/pay', 'CtrlShop::index'); 
 
