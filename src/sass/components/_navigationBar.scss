@@ -1,0 +1,46 @@
+$base-font-size: 16px;
+
+@font-face {
+    font-family: 'Lostar';
+    src: url('../fonts/Lostar.ttf') format('truetype');
+}
+
+.navbar {
+    &__left {
+        a {
+            text-decoration: none;
+            color: #fff;
+            margin-right: 10px;
+        }
+    }
+
+    &__logo {
+        font-family: 'Lostar', sans-serif; // fuente personalizada
+        font-weight: normal;
+        font-size: 2rem; 
+        color: #fff;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+
+        &__cart {
+            a {
+                img {
+                    max-width: 30px;
+                }
+            }
+        }
+
+        &__profile {
+            a {
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
