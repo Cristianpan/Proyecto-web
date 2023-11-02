@@ -5,19 +5,20 @@
 
 <?php $this->section("css") ?>
 <link rel="preload" href="/assets/css/payment.min.css" as="style" />
-<link rel="stylesheet" href="/assets/css/payment.min.css" /> 
+<link rel="stylesheet" href="/assets/css/payment.min.css" />
 <!-- include your css styles -->
 
 <?php $this->endSection() ?>
 
 <?php $this->section("js") ?>
+<script src="/assets/js/payment.js"></script>
 <!-- include your js code -->
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
 <?= view("components/navigationBar") ?>
 <div class="form">
-    <form action="">
+    <form action="#">
         <div class="rowSectionF">
             <div class="rowSectionF__first">
                 <input type="text" id="name" name="name" placeholder="Nombres">
@@ -50,9 +51,20 @@
             </div>
         </div>
         <div class="submit">
-            <input class="submit__comprar" type="submit" value="Comprar">
-            <input class="submit__cancelar" type="submit" value="CANCELAR">
+            <input class="submit__comprar" type="submit" value="Comprar" id="comprar">
+            <input class="submit__cancelar" type="submit" value="cancelar" id="cancelar">
         </div>
     </form>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modalcontent">
+        <span class="close">&times;</span>
+        <h1 class="modalcontent__title">ART ZONE</h1>
+        <h2 class="modalcontent__sub">¡Gracias por tu compra!</h2>
+        <p class="modalcontent__text">Datos de compra enviada al correo proporcionado</p>
+        <button class="btninicio" type="button">Inicio</button>
+    </div>
 </div>
 <?php $this->endSection() ?>

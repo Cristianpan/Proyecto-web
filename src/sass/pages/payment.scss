@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: v.$dark;
+  
 }
 .rowSectionF {
   margin-bottom: 7%;
@@ -82,8 +83,77 @@ input::placeholder {
     background-color: transparent; /* Hace que el botón sea transparente */
   }
 }
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 5rem;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modalcontent {
+  text-align: center;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 55%;
+  height: 60%;
+  height: auto;
+  border-radius: 1rem;
+  &__title {
+    font-family: "Lostar", sans-serif;
+    font-weight: normal;
+    font-size: 5rem;
+    margin-top: 6rem;
+  }
+  &__sub {
+    color: v.$blueGreen;
+  }
+  &__text {
+    font-size: 1.2rem;
+  }
+}
+.btninicio {
+  background-color: v.$blueGreen;
+  margin-top: 3rem;
+  width: 18rem;
+  height: 4.5rem;
+  cursor: pointer;
+  border-radius: 1rem;
+}
 
 @media (max-width: 768px) {
+  .modalcontent {
+    min-width: 90%;
+    width: auto;
+    max-height: 50rem;
+    height: auto;
+    margin: 10px;
+    
+  }
+  .btninicio{
+    width: 100%;
+  }
   .form {
     max-width: 100%; /* Para que ocupe todo el ancho de la pantalla */
     min-height: 100vh;
@@ -91,7 +161,7 @@ input::placeholder {
     justify-content: center;
   }
   .rowSectionF {
-    margin-top: 7rem;
+    margin-top: 6rem;
     margin-bottom: 4rem;
 
     &__second {
@@ -104,25 +174,24 @@ input::placeholder {
     &__third {
       flex-direction: column;
       width: 100%;
-      &__key, &__cross, &__numHouse {
+      &__key,
+      &__cross,
+      &__numHouse {
         width: 100%;
       }
     }
   }
-  .submit{
-    
-    &__comprar{
-        width: 100%;
+  .submit {
+    &__comprar {
+      width: 100%;
     }
-    &__cancelar{
-        width: 50%;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        
+    &__cancelar {
+      width: 35%;
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
   }
   input {
     margin: 8px 0;
-    
   }
 }
