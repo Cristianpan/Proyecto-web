@@ -17,8 +17,10 @@ $routes->get('/user/profile/edit', 'CtrlUserProfile::viewEdit');
 $routes->get('/user/catalog', 'CtrlArtCatalog::index'); 
 $routes->get('/user/catalog/item', 'CtrlArtCatalog::viewCreateItem'); 
 
+//artworks
 $routes->get('/art/item', 'CtrlArtItem::index'); 
 
 //Shop
-$routes->get('/shop/car/pay', 'CtrlArtItem::index'); 
+$routes->get('/shop/cart', 'CtrlShop::viewCart'); 
+$routes->get('/shop/cart/pay', 'CtrlArtItem::index'); 
 
