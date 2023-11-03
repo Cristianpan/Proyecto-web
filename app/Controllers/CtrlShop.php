@@ -6,9 +6,9 @@ use App\Controllers\BaseController;
 
 class CtrlShop extends BaseController
 {
-    public function index()
+    public function viewPayment()
     {
-        return view("pages/shop/cart/payment"); 
+        return view("pages/shop/payment"); 
     }
 
     public function viewCart(){
