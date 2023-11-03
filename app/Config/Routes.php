@@ -22,6 +22,6 @@ $routes->get('/art/item', 'CtrlArtItem::index');
 
 //Shop
 $routes->get('/shop/cart', 'CtrlShop::viewCart'); 
-$routes->get('/shop/cart/pay', 'CtrlArtItem::index'); 
+$routes->get('/shop/cart/pay', 'CtrlShop::viewPayment'); 
 
 
