@@ -14,7 +14,6 @@
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
 
 <main class="container profile">
     <h2 class="profile__title">Mi cuenta</h2>

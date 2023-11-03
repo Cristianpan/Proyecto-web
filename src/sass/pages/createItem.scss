@@ -1,6 +1,5 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v;
-@use '../components/navigationBar';
 @use '../plugins/swipper';
 
 .item {
@@ -59,7 +58,7 @@
         &--inputs {
             @include m.tablet {
                 height: calc(100vh - 6rem);
-                overflow-y: auto ;
+                height: auto;
             }
             background-color: v.$dark;
         }

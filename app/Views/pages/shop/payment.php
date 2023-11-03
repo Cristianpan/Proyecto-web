@@ -16,7 +16,6 @@
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
 <main class="payment">
     <form class="payment-form">
         <h2 class="payment__price">A pagar $1,0000.00</h2>

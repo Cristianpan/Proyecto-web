@@ -71,7 +71,7 @@
         height: calc(100vh - 2rem);
         width: 100%;
         display: flex;
-        overflow: scroll;
+        overflow: hidden;
         scroll-behavior: smooth;
         list-style: none;
         margin: 0;
@@ -93,13 +93,19 @@
 
     &__link {
       background-color: v.$dark;
-      color: v.$white;
       width: 30%;
+      color: v.$white;
       padding: 1vw;
       position: absolute;
       bottom: 3%;
+      
+      a {
+        color: v.$white;
+      }
+      
 
       &:hover {
+        cursor: pointer;
         transition: all 0.4s ease-in-out;
         background-color: v.$blueGreen;
       }
@@ -203,6 +209,8 @@
         justify-content: stretch;
 
         &__comprar {
+          display: inline-block;
+          text-align: center;
           background-color: v.$blueGreen;
           color: v.$white;
           border: none;
@@ -219,6 +227,7 @@
         }
 
         &__agregar {
+          display: inline-block;
           background-color: transparent;
           border: 2px solid v.$blueGreen;
           color: v.$blueGreen;

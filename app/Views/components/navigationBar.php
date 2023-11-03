@@ -4,11 +4,11 @@
         <a href="/auth/signup"><strong>Registrarse</strong></a>
     </div>
     <div class="navbar-center">
-        <a href="">ArtZone</a>
+        <a class="navbar-brand" href="/">ArtZone</a>
     </div>
     <div class="navbar-right">
         <div class="carrito">
-            <a href="#">
+            <a href="/cart">
                 <img src="/assets/images/carrito.png" alt="Carrito de compras">
             </a>
         </div>
@@ -18,8 +18,9 @@
                 <!-- Dropdown menu (oculto) -->
                 <div class="navbar__profile-options" id="profileOptions">
                     <ul>
-                        <li><a href="#" class="navbar__link"><strong>Usuario</strong></a></li>
-                        <li><a href="#" class="navbar__link">Editar Perfil</a></li>
+                        <li><a href="/user" class="navbar__link"><strong>Usuario</strong></a></li>
+                        <li><a href="/user/edit" class="navbar__link">Editar Perfil</a></li>
+                        <li><a href="/user/catalog" class="navbar__link">Editar Catalogo</a></li>
                         <li><a href="#" class="navbar__link">Cerrar Sesión</a></li>
                     </ul>
                 </div>

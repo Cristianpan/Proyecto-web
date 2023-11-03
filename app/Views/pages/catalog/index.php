@@ -14,7 +14,6 @@
 
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
 
 <div class="container">
     <h2 class="title-orange">Catálogo</h2>

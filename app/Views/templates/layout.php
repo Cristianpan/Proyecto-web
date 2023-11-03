@@ -14,6 +14,8 @@
 </head>
 
 <body>
+    <?= view("components/navigationBar") ?>
+
     <?php $this->renderSection("content") ?>
 
     <?php $this->renderSection("js") ?>

@@ -16,7 +16,6 @@
 
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
 
 <div class="profile">
     <img class="profile__background" src="/assets/images/fondo.jpg">
