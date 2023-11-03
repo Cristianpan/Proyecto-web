@@ -5,94 +5,180 @@
     align-items: center;
     padding: 0.625rem 1.25rem;
     color: #fff;
+}
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
+    .navbar {
         flex-direction: column;
         align-items: center;
         padding: 0.625rem;
     }
+}
 
-    .navbar-left, .navbar-center, .navbar-right {
-        display: flex;
-        align-items: center;
+.navbar-left, .navbar-center, .navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-center a {
+    font-family: 'Lostar', sans-serif;
+    text-decoration: none;
+    color: white;
+    margin: 2rem 0; 
+    margin-right: 12rem; 
+}
+
+@media (max-width: 768px) {
+    .navbar-center a {
+        margin-top: 0.625rem;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
     }
+}
 
+
+.navbar-left {
+    margin-left: 1rem; 
+}
+
+.navbar-left a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 0; 
+    padding-right: 1.25rem;
+    transition: border-color 0.3s; 
+}
+
+.navbar-left a:hover {
+    border-color: rgb(180, 86, 36);
+    color: rgb(180, 86, 36);
+}
+
+
+@media (max-width: 768px) {
     .navbar-left {
-        a {
-            text-decoration: none;
-            color: #fff;
-            margin-right: 1.25rem;
-
-            @media (max-width: 768px) {
-                margin-right: 0;
-                margin-bottom: 0.625rem;
-            }
-        }
+        text-align: center; 
     }
 
-    .navbar-center {
-        a {
-            font-family: 'Lostar', sans-serif;
-            text-decoration: none;
-            color: white;
-            margin: 2rem;
-        }
+    .navbar-left a {
+        display: block; 
+        padding: 0.625rem 0;
+        margin-bottom: 0.625rem; 
+        margin-right: 2rem;
     }
 
     .navbar-right {
+        margin-bottom: 2rem; 
+    }
+}
+
+.username {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.perfil-circle {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 0.625rem;
+    overflow: hidden; 
+}
+
+.perfil-circle img {
+    width: 100%;
+    height: 100%;
+}
+
+.perfil-circle:hover {
+    border: 3px solid rgb(180, 86, 36);
+}
+
+
+.carrito {
+    display: flex;
+    align-items: center;
+    margin-right: 1.25rem; 
+}
+
+.carrito a {
+    text-decoration: none;
+    color: white;
+}
+
+.carrito img:hover {
+    content: url('/assets/images/carrito_hover.png');
+}
+
+
+.perfil {
+    display: flex;
+    align-items: center;
+    margin-right: 1.25rem;
+    position: relative;
+}
+
+.navbar__profile-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    z-index: 1; 
+}
+
+.navbar__profile-options ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar__profile-options li {
+    margin-bottom: 10px;
+}
+
+.navbar__profile-options a {
+    color: #000;
+    padding: 0;
+}
+
+.perfil:hover .navbar__profile-options {
+    display: block;
+}
+
+.navbar__link {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar__profile-options li a:hover {
+    color: rgb(180, 86, 36);
+}
+
+@media (max-width: 768px) {
+    .navbar__profile-options {
         display: flex;
-        align-items: center;
-        margin-left: 1.25rem;
-        text-decoration: none;
-        color: white;
+        flex-direction: row; 
+        top: 3rem;
+        right: 0;
+        border: none;
+    }
 
-        .perfil {
-            display: flex;
-            align-items: center;
+    .navbar__profile-options ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+    }
 
-            img {
-                width: 3rem;
-                height: 3rem;
-                border-radius: 50%;
-                margin-right: 0.625rem;
-            }
-
-            @media (max-width: 768px) {
-                margin: 0.625rem;
-            }
-        }
-
-        .carrito {
-            display: flex;
-            align-items: center;
-
-            a {
-                text-decoration: none;
-                color: white;
-                margin-right: 1.25rem;
-
-                @media (max-width: 768px) {
-                    margin-left: 1.25rem;
-                    margin-bottom: 0.625rem;
-                }
-            }
-        }
-
-        .navbar__profile-options .navbar__link {
-            text-decoration: none; 
-            color: white; 
-        }        
-
-        .navbar__profile-options li a:hover {
-            color: gray;
-        }
-
-        .perfil img:hover {
-            border: .3rem solid rgb(180, 86, 36);
-        }
-
-        .carrito img:hover {
-            content: url('/assets/images/carrito_hover.png');
-        }
+    .navbar__profile-options li {
+        margin-right: 1rem;
     }
 }
