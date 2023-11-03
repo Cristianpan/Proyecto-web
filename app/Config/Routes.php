@@ -15,8 +15,10 @@ $routes->get('/auth/signup', 'CtrlAuth::signup');
 $routes->get('/user/profile', 'CtrlUserProfile::index'); 
 $routes->get('/user/profile/edit', 'CtrlUserProfile::viewEdit'); 
 
+//artworks
 $routes->get('/art/item', 'CtrlArtItem::index'); 
 
 //Shop
-$routes->get('/shop/car/pay', 'CtrlArtItem::index'); 
+$routes->get('/shop/cart', 'CtrlShop::viewCart'); 
+$routes->get('/shop/cart/pay', 'CtrlArtItem::index'); 
 

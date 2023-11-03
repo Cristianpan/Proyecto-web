@@ -10,4 +10,8 @@ class CtrlShop extends BaseController
     {
         return view("pages/shop/cart/payment"); 
     }
+
+    public function viewCart(){
+        return view ("pages/shop/cart"); 
+    }
 }
