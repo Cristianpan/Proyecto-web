@@ -1,14 +1,15 @@
 .navbar {
     background-color: #000;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.625rem 1.25rem; 
+    padding: 0.625rem 1.25rem;
     color: #fff;
 
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: center;
-        padding: 0.625rem; 
+        padding: 0.625rem;
     }
 
     .navbar-left, .navbar-center, .navbar-right {
@@ -20,54 +21,78 @@
         a {
             text-decoration: none;
             color: #fff;
-            margin-right: 1.25rem; 
+            margin-right: 1.25rem;
 
             @media (max-width: 768px) {
                 margin-right: 0;
-                margin-bottom: 0.625rem; 
+                margin-bottom: 0.625rem;
             }
         }
     }
 
     .navbar-center {
-        img {
-            max-width: 6.25rem; 
-
-            @media (max-width: 768px) {
-                max-width: 5rem;
-            }
+        a {
+            font-family: 'Lostar', sans-serif;
+            text-decoration: none;
+            color: white;
+            margin: 2rem;
         }
     }
 
     .navbar-right {
+        display: flex;
+        align-items: center;
+        margin-left: 1.25rem;
+        text-decoration: none;
+        color: white;
 
         .perfil {
             display: flex;
             align-items: center;
-            margin-left: 1.25rem;
 
             img {
-                width: 1.875rem; 
-                height: 1.875rem;
+                width: 3rem;
+                height: 3rem;
                 border-radius: 50%;
-                margin-right: 0.625rem; 
+                margin-right: 0.625rem;
             }
 
             @media (max-width: 768px) {
-                margin-left: 0;
-                margin-top: 0.625rem; 
+                margin: 0.625rem;
             }
         }
 
-        a {
-            text-decoration: none;
-            color: white;
-            margin-right: 1.25rem; 
+        .carrito {
+            display: flex;
+            align-items: center;
 
-            @media (max-width: 768px) {
-                margin-right: 0;
-                margin-bottom: 0.625rem; 
+            a {
+                text-decoration: none;
+                color: white;
+                margin-right: 1.25rem;
+
+                @media (max-width: 768px) {
+                    margin-left: 1.25rem;
+                    margin-bottom: 0.625rem;
+                }
             }
+        }
+
+        .navbar__profile-options .navbar__link {
+            text-decoration: none; 
+            color: white; 
+        }        
+
+        .navbar__profile-options li a:hover {
+            color: gray;
+        }
+
+        .perfil img:hover {
+            border: .3rem solid rgb(180, 86, 36);
+        }
+
+        .carrito img:hover {
+            content: url('/assets/images/carrito_hover.png');
         }
     }
 }

@@ -1,16 +1,16 @@
 <nav class="navbar">
   <div class="navbar-left">
-    <a href="">Inicio</a>
+        <a href=""><strong>Inicio</strong></a>
   </div>
   <div class="navbar-center">
-    <a href="">
-      <img src="/assets/images/logo_artzone.png" alt="Logo Artzone">
-    </a>
+    <a href=""> ArtZone </a>
   </div>
   <div class="navbar-right">
-    <a href="carrito.php">
-      <img src="/assets/images/carrito.png" alt="Carrito de compras">
-    </a>
+    <div class="carrito">
+        <a href="carrito.php">
+            <img src="/assets/images/carrito.png" alt="Carrito de compras">
+        </a>
+    </div>
     <div class="perfil" id="perfilCircle">
       <a href="#" id="perfilLink">
         <div class="perfil-circle">
@@ -20,8 +20,8 @@
       <div class="navbar__profile-options" id="profileOptions">
         <ul>
           <li><a href="#" class="navbar__link">Editar Perfil</a></li>
-          <li><a href="#" class="navbar__link">Cerrar Sesión</a></li>
           <li><a href="#" class="navbar__link">Editar Obra</a></li>
+          <li><a href="#" class="navbar__link">Cerrar Sesión</a></li>
         </ul>
       </div>
     </div>
@@ -29,15 +29,13 @@
 </nav>
 
 <script>
-  // Obtén el enlace del perfil y las opciones del perfil
   const perfilLink = document.getElementById('perfilLink');
   const profileOptions = document.getElementById('profileOptions');
 
-  // Agrega un evento de clic al enlace del perfil
   perfilLink.addEventListener('click', function (e) {
-    e.preventDefault(); // Evita que el enlace se abra
+    e.preventDefault(); 
 
-    // Muestra u oculta las opciones del perfil al hacer clic
+    // Muestra las opciones del perfil al hacer clic <img src="/assets/images/logo_artzone.png" alt="Logo Artzone">
     if (profileOptions.style.display === 'block') {
       profileOptions.style.display = 'none';
     } else {
