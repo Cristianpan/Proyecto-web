@@ -3,34 +3,32 @@
 
 .cart {
     width: 100%;
-    height: 95vh;
+    height: calc(100vh - 6rem);
     display: flex;
     flex-wrap: wrap;
-
-    
-    @include m.desktop {        
-        flex-wrap: wrap;
+    @include m.tablet {
+        flex-wrap: nowrap;
     }
 
     &__items {
-        flex: 0 0 100%;
         height: auto;
 
         @include m.desktop {
             flex: 1;
             height: 88vh;
             margin: auto;
-          }
+        }
 
 
         &__title {
             padding: 1rem;
             width: 100%;
-            
-            h1{
+
+            h1 {
                 font-size: 25pt;
-                    padding-top: 2rem;
-                    text-align: center;
+                padding-top: 2rem;
+                text-align: center;
+
                 @include m.desktop {
                     text-align: left;
                     font-size: 35pt;
@@ -40,7 +38,7 @@
                 }
             }
 
-            
+
         }
 
         &__shopping {
@@ -52,7 +50,7 @@
             padding-right: 2rem;
             padding-left: 2rem;
 
-            
+
 
             &__header {
                 display: flex;
@@ -82,9 +80,10 @@
 
             &__rows {
                 width: 100%;
-                
-                @include m.desktop {
-                    overflow: scroll;
+
+                @include m.tablet {
+                    height: 80vh;
+                    overflow-y: auto;
                 }
 
                 &__row {
@@ -93,7 +92,7 @@
                     display: flex;
                     align-items: center;
 
-                    @include m.desktop {        
+                    @include m.desktop {
                         height: auto;
                     }
 
@@ -114,15 +113,15 @@
 
                             }
 
-                            &:hover{
+                            &:hover {
                                 color: v.$brown;
                             }
                         }
                     }
 
-                    &__cell4{
+                    &__cell4 {
                         flex: 0.9;
-                        
+
 
                         p {
                             font-size: 8pt;
@@ -157,7 +156,7 @@
 
 
                             img {
-                            max-height: 30rem;
+                                max-height: 30rem;
 
                                 width: 100%;
                                 height: 100%;
@@ -177,7 +176,7 @@
                             color: v.$brown;
                         }
 
-                        
+
                     }
                 }
             }
@@ -186,7 +185,6 @@
 
     &__details {
         padding: 8rem 1rem;
-        flex: 0 0 100%;
         display: flex;
 
 
@@ -194,7 +192,7 @@
             flex: 0.6;
             margin-top: 5rem;
             height: 80%;
-          }
+        }
 
         &__content {
             margin-bottom: 10rem;
@@ -206,7 +204,7 @@
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-                  
+
 
             &__header {
                 border-bottom: 1px v.$blueGreen solid;
@@ -255,7 +253,7 @@
                         font-weight: bold;
                         font-size: 15pt;
                         color: v.$blueGreen;
-                        
+
 
                     }
                 }
@@ -263,7 +261,8 @@
 
             }
 
-            button {
+            a {
+                display: inline-block;
                 text-align: center;
                 width: 100%;
 
