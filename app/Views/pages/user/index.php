@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/assets/css/profile.min.css" />
 <?php $this->endSection() ?>
 
-<?php $this->section("js") ?> 
+<?php $this->section("js") ?>
 <script src="/assets/js/personalBlocks.min.js"></script>
 <?php $this->endSection() ?>
 
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="about">
+<div class="about container">
     <h1 class="about__name">Lucía Méndez</h1>
     <p class="about__job">Oficio</p>
     <p class="about__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et aut alias odio qui ad ut
@@ -52,8 +52,13 @@
 
 </div>
 
+<section class="container">
     <?= view("components/personalBlocks") ?>
-    <h2>Catálogo</h2>
+</section>
+
+<section class="container">
+    <h2 class="title-orange">Catálogo</h2>
     <?= view("components/searchBar") ?>
     <?= view("components/gallery") ?>
-    <?php $this->endSection() ?>
+</section>
+<?php $this->endSection() ?>

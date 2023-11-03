@@ -4,3 +4,197 @@
 @use '../components/navigationBar';
 @use '../components/personalBlocks';
 @use '../plugins/swipper';
+
+.profile {
+    margin-bottom: 3rem;
+    &__title {
+        font-size: 5rem;
+        margin: 4rem 0 2rem 0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 20rem;
+        img {
+            max-height: 30rem;
+            max-width: 100%;
+        } 
+        &--none {
+            background-color: lighten(v.$lightGray, 10);
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            p {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.profile-form {
+
+    display: flex;
+    flex-direction: column;
+
+    @include m.tablet {
+        flex-direction: row;
+        &__section:nth-of-type(1) {
+            width: 40%;
+            margin-right: 5rem;
+        }
+        &__section:nth-of-type(2){
+            width: 60%;
+        }
+    }
+    
+    @include m.desktop {
+        &__section:nth-of-type(1) {
+            width: 25%;
+        }
+        &__section:nth-of-type(2){
+            width: 75%;
+        }
+    }
+
+    &__field {
+        position: relative; 
+        height: 6rem;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+
+        &--select {
+            height: auto;
+        }
+
+        &--textarea {
+            height: auto;
+        }
+    }
+
+    &__label {
+        position: absolute;
+        top: 0.5rem;
+        right: 1.5rem;
+        font-size: 1.6rem;
+        display: block;
+        margin-bottom: 1rem;
+        transition: color 0.3s;
+        color: #84A98C; 
+        font-weight: 500; 
+
+        &--file {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 1.4rem;
+            padding: 2rem;
+            font-weight: 500;
+            background-color: v.$lightGray;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: darken(v.$lightGray, 5);
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__input {
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        padding: 0.5rem 2rem 0 2rem;
+        font-size: 1.6rem;
+        border: solid 0.1rem #84A98C; 
+        transition: border 0.2s;
+        
+        &:focus-visible ~ .profile-form__label {
+            color: v.$green; 
+        }
+
+        &:focus-visible {
+            border: solid 0.1rem rgba(v.$green, 0.8);
+        }
+
+        &--textarea {
+            outline: none;
+            padding-top: 2rem; 
+            resize: none;
+            height: 15rem;
+        }
+
+        &--hidden {
+            display: none;
+        }
+
+        &--select {
+            border: none;
+            border-radius: 1.5rem;
+            width: 12rem;
+            padding: 0.6rem 0rem 0.6rem 1.5rem;
+            text-align: left;
+            font-size:  1.6rem;
+            background-color: v.$lightGray;
+            color: v.$dark;
+            
+            background-image: url(/assets/images/arrow-icon.svg);
+            background-size: 1.2rem;
+            background-repeat: no-repeat;
+            background-position: 90% center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover{
+                background-color: darken(v.$lightGray, 5);
+            }
+    
+            &:focus-visible {
+                border: none; 
+            }
+        }
+    }
+}
+
+.flex {
+
+    @include m.desktop {
+        display: flex;
+        gap: 5rem; 
+    
+        &__content {
+            flex: 1;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    @include m.tablet {
+        
+        gap: 4rem;
+    }
+
+    &__button {
+        flex: 1;
+        padding: 1.6rem 0;
+        text-align: center;
+        display: inline-block;
+        border-radius: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        cursor: pointer;
+
+        &--submit {
+            background-color: v.$white;
+            border: solid 0.2rem #84A98C;
+        }
+
+        &--cancel {
+            color: v.$white;
+            background-color: #84A98C;
+        }
+    }
+}
