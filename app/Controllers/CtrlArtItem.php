@@ -10,4 +10,8 @@ class CtrlArtItem extends BaseController
     {
         return view("pages/art/item");
     }
+    public function cart()
+    {
+        return view("pages/art/cart");
+    }
 }
