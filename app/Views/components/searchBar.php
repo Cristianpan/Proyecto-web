@@ -1,4 +1,4 @@
-<div class="container">
+<div>
     <div class="search">
         <button class="search__button"><img src="/assets/images/search-icon.svg" class="search__icon"></button>
         <input type="search" class="search__input" placeholder="Escriba el nombre de la obra">

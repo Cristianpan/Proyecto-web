@@ -2,13 +2,11 @@
 @use '../base/variables' as v; 
 
 .personal-blocks {
-    width: 86%;
-    margin: 5rem auto;
+    width: 100%;
     overflow: hidden;
     position: relative;
 
     &__block {
-        border-radius: 1rem;
         box-sizing: border-box;
         padding: 5rem;
         &--1 {
@@ -23,7 +21,7 @@
     }
 
     &__title {
-        font-size: 4rem;
+        font-size: 3.5rem;
         margin-bottom: 2rem;
         color: v.$white;
         word-wrap: break-word;

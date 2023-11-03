@@ -4,9 +4,9 @@
 .gallery {
     max-width: 127rem;
     height: 100%;
-    margin: 3rem 8%;
-    columns: 3 15rem;
-    gap: 5%;
+    margin: 3rem 0; 
+    columns: 4 15rem;
+    gap: 3rem;
     
     &__element {
         margin-top: 3rem;

@@ -79,7 +79,16 @@ select {
     appearance: none;
 }
 
+/*utils*/
+
 .container {
-    width: 86%;
+    max-width: 120rem;
+    width: 93%;
     margin: 0 auto;
+}
+
+.title-orange {
+    margin: 3rem 0;
+    font-size: 5rem;
+    color: v.$brown;
 }
