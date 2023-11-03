@@ -10,4 +10,8 @@ class CtrlUserProfile extends BaseController
     {
         return view("pages/user/index"); 
     }
+
+    public function viewEdit(){
+        return view("pages/user/edit"); 
+    }
 }
