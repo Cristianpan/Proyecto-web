@@ -4,7 +4,7 @@
 .gallery {
     max-width: 127rem;
     height: 100%;
-    margin: 3rem 0; 
+    margin: 1rem 0 2rem 0; 
     columns: 4 15rem;
     gap: 3rem;
     
@@ -51,6 +51,7 @@
         border-radius: 1.5rem;
         &:hover .gallery__image {
             filter: brightness(0.7);
+            cursor: pointer;
         }
 
         &:hover .gallery__autor {

@@ -1,5 +1,6 @@
 @use 'base/normalize';
 @use 'base/variables' as v;
+@use 'base/mixins' as m;
 
 @font-face {
     font-family: 'Lostar';
@@ -64,6 +65,12 @@ ul {
     margin: 0;
 }
 
+textarea {
+    resize: none;
+    outline: none;
+    border: none;
+}
+
 input {
     border: none;
     outline: none;
@@ -88,7 +95,7 @@ select {
 }
 
 .title-orange {
-    margin: 3rem 0;
+    margin: 3rem 0 2rem 0;
     font-size: 5rem;
     color: v.$brown;
 }

@@ -35,19 +35,4 @@
         line-height: 1.5;
         width: 100%;
     }
-
-    .swiper-pagination-bullet {
-        background-color: v.$white;
-    }
-
-    .swiper-button-next::after, .swiper-button-prev::after {
-        font-size: 3rem;
-        font-weight: bold;
-        color: v.$gray; 
-        display: none;
-
-        @include m.tablet {
-            display: block;
-        }
-    }
 }
