@@ -3,6 +3,7 @@
 @use '../components/gallery';
 @use '../components/navigationBar';
 @use '../components/personalBlocks';
+@use '../components/modal'; 
 @use '../plugins/swipper';
 
 .profile {
@@ -15,9 +16,12 @@
     &__image {
         width: 100%;
         height: 20rem;
+        overflow: hidden;
         img {
-            max-height: 30rem;
-            max-width: 100%;
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            width: 100%;
         } 
         &--none {
             background-color: lighten(v.$lightGray, 10);
@@ -198,3 +202,30 @@
         }
     }
 }
+
+.personals-block-edit {
+    margin-bottom: 5rem;
+
+    
+    &__header {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+        margin-bottom: 5rem;
+        @include m.tablet {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__title {
+        display: inline;
+        font-size: 5rem;
+        color: v.$brown;
+    }
+
+    &__add {
+        cursor: pointer;
+        width: 4.5rem;
+    }
+}
+

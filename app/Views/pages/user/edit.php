@@ -83,13 +83,39 @@
     </form>
 </main>
 
-<section class="container">
-    <h2 class="title-orange">Bloques Personales</h2>
-    <?= view("components/personalBlocks") ?>;
+<section class="container personals-block-edit">
+    <div class="personals-block-edit__header">
+        <h2 class="personals-block-edit__title">Bloques Personales</h2>
+        <button class="personals-block-edit__add"><img src="/assets/images/plus-icon.svg" alt="add-icon"></button>
+    </div>
+
+    <?= view("components/personalBlocks", ['edit' => true]) ?>
 </section>
+
+
+<div class="modal modal--none">
+    <div class="modal__content">
+        <h2 class="modal__title">Agregar Nuevo Bloque</h2>
+        <form class="modal-form" method="post">
+            <div class="modal-form__field">
+                <input class="modal-form__input" type="text" id="block-name" name="name">
+                <label class="modal-form__label" for="block-name">Nombre</label>
+            </div>
+            <div class="modal-form__field modal-form__field--textarea">
+                <textarea class="modal-form__input" id="block-description" name="description"></textarea>
+                <label class="modal-form__label" for="block-description">Descripción</label>
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="buttons__button" value="Guardar Bloque">
+                <input type="reset" class="buttons__button buttons__button--cancelar" value="Cancelar">
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php $this->endSection() ?>
 
-<?php $this->section("js") ?> 
+<?php $this->section("js") ?>
 <script src="/assets/js/profileEdit.min.js"></script>
 <?php $this->endSection() ?>
