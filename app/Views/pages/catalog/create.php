@@ -15,9 +15,6 @@
 
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
-
-
 <main class="item">
     <h2 class="item__title">Registrar Obra</h2>
     <form class="item-form" action="post">

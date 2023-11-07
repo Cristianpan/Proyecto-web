@@ -1,21 +1,30 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
 .navbar {
-    background-color: #000;
+    background-color: v.$dark;
+    height: auto;
+    min-height: 6rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.625rem 1.25rem;
     color: #fff;
+    position: sticky;
+    padding: 0 3rem;
+    top: 0;
+    z-index: 2;
 }
 
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         align-items: center;
-        padding: 0.625rem;
     }
 }
 
-.navbar-left, .navbar-center, .navbar-right {
+.navbar-left,
+.navbar-center,
+.navbar-right {
     display: flex;
     align-items: center;
 }
@@ -29,10 +38,11 @@
 
 .navbar-center a {
     font-family: 'Lostar', sans-serif;
+    font-size: 3rem;
     text-decoration: none;
     color: white;
-    margin: 2rem 0; 
-    margin-right: 12rem; 
+    margin: 2rem 0;
+    margin-right: 12rem;
 }
 
 @media (max-width: 768px) {
@@ -45,15 +55,15 @@
 
 
 .navbar-left {
-    margin-left: 1rem; 
+    margin-left: 1rem;
 }
 
 .navbar-left a {
     text-decoration: none;
     color: #fff;
-    margin-right: 0; 
+    margin-right: 0;
     padding-right: 1.25rem;
-    transition: border-color 0.3s; 
+    transition: border-color 0.3s;
 }
 
 .navbar-left a:hover {
@@ -64,18 +74,17 @@
 
 @media (max-width: 768px) {
     .navbar-left {
-        text-align: center; 
+        text-align: center;
     }
 
     .navbar-left a {
-        display: block; 
-        padding: 0.625rem 0;
-        margin-bottom: 0.625rem; 
+        display: block;
+        margin-bottom: 0.625rem;
         margin-right: 2rem;
     }
 
     .navbar-right {
-        margin-bottom: 2rem; 
+        margin-bottom: 2rem;
     }
 }
 
@@ -89,7 +98,7 @@
     height: 3rem;
     border-radius: 50%;
     margin-right: 0.625rem;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .perfil-circle img {
@@ -105,7 +114,7 @@
 .carrito {
     display: flex;
     align-items: center;
-    margin-right: 1.25rem; 
+    margin-right: 1.25rem;
 }
 
 .carrito a {
@@ -133,7 +142,7 @@
     background: white;
     padding: 10px;
     border: 1px solid #ccc;
-    z-index: 1; 
+    z-index: 1;
 }
 
 .navbar__profile-options ul {
@@ -166,7 +175,7 @@
 @media (max-width: 768px) {
     .navbar__profile-options {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
         top: 3rem;
         right: 0;
         border: none;

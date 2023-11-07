@@ -13,7 +13,6 @@
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
 <div class="cart">
     <section class="cart__items">
         <div class="cart__items__title">

@@ -11,8 +11,6 @@
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
-<?= view("components/navigationBar") ?>
-
 <div class="art">
     <div class="art__images">
         <div class="art__images__space">
@@ -27,7 +25,7 @@
             </ul>
 
         </div>
-        <div class="art__images__link"><a><span>Nombre Artista</span></a></div>
+        <a class="art__images__link" href="/user">Nombre Artista</a>
 
     </div>
 
@@ -82,7 +80,7 @@
 
             </div>
             <div class="art__descriptions__center__buttons">
-                <button class="art__descriptions__center__buttons__comprar">Comprar</button>
+                <a href="/payment" class="art__descriptions__center__buttons__comprar">Comprar</a>
                 <button class="art__descriptions__center__buttons__agregar">Agregar al carrito</button>
             </div>
         </div>
