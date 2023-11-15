@@ -16,13 +16,15 @@
     <p class="auth__description">¡Bienvenido de vuelta!</p>
 </div>
 
-<form class="form">
+<form class="form" method="post">
+    <?= validation_show_error('user') ?>
     <div class="form__field">
-        <input class="form__input" type="text" id="user" name="user" required>
+        <input class="form__input" type="text" id="user" name="user" value="<?= old('user') ?? ''?>">
         <label for="user" class="form__label">Usuario</label>
     </div>
+    <?= validation_show_error('password') ?>
     <div class="form__field">
-        <input class="form__input" type="password" id="password" name="password" required>
+        <input class="form__input" type="password" id="password" name="password" value="<?= old('password') ?? ''?>">
         <label for="password" class="form__label">Contraseña</label>
     </div>
 
