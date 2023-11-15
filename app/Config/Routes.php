@@ -9,6 +9,7 @@ use CodeIgniter\Router\RouteCollection;
 
 //Auth
 $routes->get('/auth/login', 'CtrlAuth::index');
+$routes->post('/auth/login', 'CtrlAuth::login');
 $routes->get('/auth/signup', 'CtrlAuth::signup');
 
 //User
@@ -24,3 +25,6 @@ $routes->get('/cart', 'CtrlShop::viewCart');
 $routes->get('/payment', 'CtrlShop::viewPayment'); 
 
 
+$routes->post('/user/(:segment)/personalBlock/create', 'CtrlPersonalBlock::create/$1'); 
+$routes->put('/user/(:segment)/personalBlock/edit/(:segment)', 'CtrlPersonalBlock::update/$1/$2'); 
+$routes->delete('/user/(:segment)/personalBlock/delete/(:segment)', 'CtrlPersonalBlock::delete/$1/$2'); 
