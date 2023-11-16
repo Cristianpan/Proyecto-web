@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Errors\InvalidDataInputException;
+use App\Errors\PersonalBlockNotFoundException;
 use App\Models\PersonalBlock;
 use App\Validators\PersonalBlockValidation;
+use CodeIgniter\HTTP\Response;
 
 class CtrlPersonalBlock extends BaseController
 {
@@ -26,8 +28,6 @@ class CtrlPersonalBlock extends BaseController
             $personalBlockValidation = new PersonalBlockValidation();
             $personalBlockValidation->validateInputs($dataPersonalBlock);
 
-            $title = $dataPersonalBlock['title'];
-            $description = $dataPersonalBlock['description'];
             $personalBlock = new PersonalBlock();
             $foundBlock = $personalBlock
                 ->where('personalBlockId', $personalBlockId)
@@ -35,27 +35,28 @@ class CtrlPersonalBlock extends BaseController
                 ->first();
 
             if ($foundBlock == null) {
-                throw new \Exception('No existe el bloque personalizado');
+                throw new PersonalBlockNotFoundException('No existe el bloque personalizado');
+
             }
 
-            $data = [
-                'title' => $title,
-                'description'  => $description,
-            ];
-            
-            $personalBlock->update($personalBlockId, $data);
+            $personalBlock->update($personalBlockId, $dataPersonalBlock);
 
             $body = [
                 'personalBlockId' => $personalBlockId,
                 'userId' => $userId,
-                'title' => $title,
-                'description' => $description
+                'title' => $dataPersonalBlock['title'],
+                'description' => $dataPersonalBlock['description']
             ];
-            return $this->response->setJSON(['ok' => true, 'body' => $body])->setStatusCode(200); 
+            return $this->response->setJSON(['ok' => true, 'body' => $body])->setStatusCode(Response::HTTP_OK); 
         } catch (InvalidDataInputException $th) {
-            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400);
-        } catch(Exception $th){
-            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400);
+            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(Response::HTTP_BAD_REQUEST);
+        } catch(PersonalBlockNotFoundException $th){
+            return $this->response->setJSON([
+                'ok' => false, 
+                'body' => [
+                    'personalBlockNotFound'=> $th->getMessage()
+                ]
+            ]);
         }
     }
 
