@@ -61,6 +61,32 @@ class CtrlPersonalBlock extends BaseController
     }
 
     public function delete(String $userId, String $personalBlockId){
+        try {  
+            $personalBlock = new PersonalBlock();
+            $foundBlock = $personalBlock
+                ->where('personalBlockId', $personalBlockId)
+                ->where('userId', $userId)
+                ->first();
+    
+            if ($foundBlock == null) {
+                throw new PersonalBlockNotFoundException('No existe el bloque personalizado');
+            }
+    
+            $personalBlock->delete($personalBlockId);
+    
+            $body = [
+                'personalBlockId' => $personalBlockId,
+            ];
+    
+            return $this->response->setJSON(['ok' => true, 'body' => $body])->setStatusCode(Response::HTTP_OK);
+        } catch (PersonalBlockNotFoundException $th) {
+            return $this->response->setJSON([
+                'ok' => false,
+                'body' => [
+                    'personalBlockNotFound' => $th->getMessage()
+                ]
+            ]);
+        }
 
     }
 }
