@@ -8,7 +8,7 @@ class User extends Model
 {
     protected $table            = 'users';
     protected $primaryKey       = 'userId';
-    protected $allowedFields    = ['userName', 'password', 'confirm', 'token', 'email'];
+    protected $allowedFields    = ['name', 'lastName', 'password', 'confirm', 'token', 'email'];
 
     protected $beforeInsert   = [];
     protected $afterInsert    = [];

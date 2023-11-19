@@ -32,7 +32,6 @@ function serve() {
   browserSync.init({
     proxy: "http://localhost:8080",
     port: 3000,
-    host: "192.168.1.8",
     notify: true,
     serveStaticOptions: {
       cacheControl: false,

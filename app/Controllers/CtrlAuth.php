@@ -23,12 +23,12 @@ class CtrlAuth extends BaseController
             $loginValidator = new LoginValidation(); 
             $loginValidator->validateInputs($userData); 
 
-            $user = (new User())->where('userName', $userData['user'])->first(); 
+            $user = (new User())->where('email', $userData['email'])->first(); 
             $loginValidator->validateCredentials($user, $userData['password']); 
 
             session()->set('user', [
                 'userId' => $user['userId'], 
-                'userName' => $user['userName']
+                'email' => $user['email']
             ]); 
 
         } catch (\Throwable $th) {
