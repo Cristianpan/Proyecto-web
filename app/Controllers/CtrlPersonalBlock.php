@@ -15,10 +15,29 @@ class CtrlPersonalBlock extends BaseController
     {
         try {
             $dataPersonalBlock = json_decode($this->request->getBody(), true);
+            $personalBlockValidation = new PersonalBlockValidation();
+            $personalBlockValidation->validateInputs($dataPersonalBlock);
+
+            $personalBlock = new PersonalBlock();
+            $personalBlock->userId = $userId;
+
+            $personalBlock->title = $dataPersonalBlock['title'];
+            $personalBlock->description = $dataPersonalBlock['description'];
+
+            $personalBlock->insert();
+
+            $body = [
+                'personalBlockId' => $personalBlock->getInsertID(), // Obtener el ID del ultimo registro insertado
+                'userId' => $userId,
+                'title' => $dataPersonalBlock['title'],
+                'description' => $dataPersonalBlock['description']
+            ];
+
+            return $this->response->setJSON(['ok' => true, 'body' => $body])->setStatusCode(201);
+
         } catch (InvalidDataInputException $th) {
-            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400); 
-        }
-        return $this->response->setJSON(['ok' => true, 'body' => $dataPersonalBlock])->setStatusCode(201); 
+            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400);
+        } 
     }
 
     public function update(String $userId, String $personalBlockId){   
