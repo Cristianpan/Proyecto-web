@@ -8,6 +8,7 @@ use App\Errors\PersonalBlockNotFoundException;
 use App\Models\PersonalBlock;
 use App\Validators\PersonalBlockValidation;
 use CodeIgniter\HTTP\Response;
+use Throwable;
 
 class CtrlPersonalBlock extends BaseController
 {
@@ -15,10 +16,28 @@ class CtrlPersonalBlock extends BaseController
     {
         try {
             $dataPersonalBlock = json_decode($this->request->getBody(), true);
+            $personalBlockValidation = new PersonalBlockValidation();
+            $personalBlockValidation->validateInputs($dataPersonalBlock);
+
+            $personalBlock = new PersonalBlock();
+            $dataPersonalBlock['userId'] = $userId;
+
+            $personalBlockId = $personalBlock->insert($dataPersonalBlock);
+
+            $body = [
+                'personalBlockId' => $personalBlockId, // Obtener el ID del ultimo registro insertado
+                'userId' => $userId,
+                'title' => $dataPersonalBlock['title'],
+                'description' => $dataPersonalBlock['description']
+            ];
+
+            return $this->response->setJSON(['ok' => true, 'body' => $body])->setStatusCode(201);
+
         } catch (InvalidDataInputException $th) {
-            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400); 
+            return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400);
+        } catch (\Throwable $th) {
+            var_dump($th->getMessage());
         }
-        return $this->response->setJSON(['ok' => true, 'body' => $dataPersonalBlock])->setStatusCode(201); 
     }
 
     public function update(String $userId, String $personalBlockId){   
