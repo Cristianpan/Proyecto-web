@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Faker\Core\Uuid;
 
 class PersonalBlock extends Model
 {
@@ -13,7 +14,7 @@ class PersonalBlock extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'description'];
+    protected $allowedFields    = ['userId','title', 'description'];
 
     // Dates
     protected $useTimestamps = false;
@@ -30,7 +31,7 @@ class PersonalBlock extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setId'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
@@ -38,4 +39,10 @@ class PersonalBlock extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    protected function setId(array $data){
+        $data['data']['personalBlockId'] = (new Uuid())->uuid3();
+        return $data; 
+    }
 }
