@@ -12,20 +12,24 @@
                 <img src="/assets/images/carrito.png" alt="Carrito de compras">
             </a>
         </div>
+        <?php 
+            $user = session()->get('user') ?? null; 
+            if ($user):
+        ?>
         <div class="perfil" id="perfilCircle">
             <div class="perfil-circle" id="perfilButton">
                 <img src="/assets/images/user_icon.png" alt="Foto de perfil">
-                <!-- Dropdown menu (oculto) -->
                 <div class="navbar__profile-options" id="profileOptions">
                     <ul>
-                        <li><a href="/user" class="navbar__link"><strong>Usuario</strong></a></li>
-                        <li><a href="/user/edit" class="navbar__link">Editar Perfil</a></li>
-                        <li><a href="/user/catalog" class="navbar__link">Editar Catalogo</a></li>
-                        <li><a href="#" class="navbar__link">Cerrar Sesión</a></li>
+                        <li><a href="/user/<?=$user['userId']?>" class="navbar__link"><strong>Usuario</strong></a></li>
+                        <li><a href="/user/<?=$user['userId']?>/edit" class="navbar__link">Editar Perfil</a></li>
+                        <li><a href="/user/<?=$user['userId']?>/catalog" class="navbar__link">Editar Catalogo</a></li>
+                        <li><a href="/auth/logout" class="navbar__link">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+        <?php endif?>
     </div>
 </nav>
 

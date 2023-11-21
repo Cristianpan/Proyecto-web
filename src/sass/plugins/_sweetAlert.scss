@@ -1,0 +1,63 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+@use './node_modules/sweetalert2/dist/sweetalert2.css';
+
+
+.dark {
+  .swal2-popup {
+    background: #19191a;
+    color: #545454;
+  }
+
+  .swal2-title {
+    color: #e1e1e1;
+  }
+}
+
+.swal2-actions {
+  .swal2-confirm {
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    padding: 2rem 5rem;
+    color: v.$dark;
+  }
+}
+
+.swal2-popup {
+  width: 90%;
+  border-radius: 2rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+  @include m.tablet {
+    width: 85%;
+    padding: 10rem 0;
+  }
+
+  @include m.desktop {
+    width: 55%;
+  }
+}
+
+.sweet {
+  letter-spacing: 5px;
+  &__title {
+    font-size: 2.6rem;
+    padding-bottom: 1rem;
+    text-align: center;
+
+    &--error {
+      color: v.$red;
+    }
+
+    &--success {
+      color: darken(v.$lightGreen,10);
+    }
+  }
+
+  &__text {
+    margin: 0 auto;
+    width: 75%;
+    font-size: 1.6rem;
+    color: v.$dark;
+  }
+}

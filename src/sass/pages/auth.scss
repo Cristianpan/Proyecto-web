@@ -3,7 +3,7 @@
 @use "../components/auth-form";
 @use "../components/auth-nav";
 @use "../components/alert-errors";
-
+@use "../plugins/sweetAlert";
 .auth {
     width: 100%;
     min-height: 100vh;

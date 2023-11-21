@@ -1,0 +1,16 @@
+@use './node_modules/filepond/dist/filepond.css';
+@use './node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+.filepond--root {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+}
+
+.filepond--drop-label{
+    label {
+        font-size: 1.6rem;
+    }
+}
+.filepond--credits{
+    display: none;
+}

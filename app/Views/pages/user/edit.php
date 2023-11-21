@@ -18,67 +18,68 @@
 <main class="container profile">
     <h2 class="profile__title">Mi cuenta</h2>
 
-    <form class="profile-form">
+    <form class="profile-form" method="post">
         <div class="profile-form__section">
-            <div id="profile-image" class="profile__image profile__image--none">
-                <p>No se ha seleccionada alguna foto de perfil</p>
-            </div>
-            <div class="profile-form__field">
-                <label class="profile-form__label--file" for="profile">
-                    Agregar foto de perfil
-                </label>
-                <input class="profile-form__input--hidden" type="file" accept="image/jpeg, image/png" name="profile" id="profile">
+            <div class="profile-form__field profile-form__field--file">
+                <?= validation_show_error('imageProfile', 'alert-error') ?>
+                <input id="imageProfile" name="imageProfile" type="file" />
+                <div id="delete-imageProfile"></div>
             </div>
             <div class="profile-form__field profile-form__field--select">
-                <select id="profesion" name="profesion" class="profile-form__input profile-form__input--select">
-                    <option value="" selected disabled>Profesion</option>
-                    <option value="pintor">Pintor</option>
-                    <option value="escultor">Escultor</option>
-                    <option value="otro">Otro</option>
+                <?= validation_show_error('occupationId', 'alert-error') ?>
+                <select id="profesion" name="occupationId" class="profile-form__input profile-form__input--select">
+                    <option value="">Ocupación</option>
+                    <?php foreach ($occupations as $occupation) : ?>
+                        <option value="<?= $occupation['occupationId'] ?>" <?= isset($userDetails['occupationId']) && $userDetails['occupationId'] == $occupation['occupationId'] ? 'selected' : '' ?>><?= $occupation['type'] ?></option>
+                    <?php endforeach ?>
                 </select>
             </div>
         </div>
         <div class="profile-form__section">
             <div class="flex">
                 <div class="flex__content">
-                    <div id="background-image" class="profile__image profile__image--none">
-                        <p>No se ha seleccionada alguna foto de perfil</p>
-                    </div>
-                    <div class="profile-form__field">
-                        <label class="profile-form__label--file" for="background">
-                            Agregar foto de perfil
-                        </label>
-                        <input class="profile-form__input--hidden" accept="image/jpeg, image/png" type="file" name="background" id="background">
+                    <?= validation_show_error('imageBackground', 'alert-error') ?>
+                    <div class="profile-form__field profile-form__field--file">
+                        <input class="filepond-input-multiple" id="imageBackground" name="imageBackground" type="file" />
+                        <div id="delete-imageBackground"></div>
                     </div>
                 </div>
                 <div class="flex__content">
+                    <?= validation_show_error('name', 'alert-error') ?>
                     <div class="profile-form__field">
-                        <input type="text" class="profile-form__input" name="name" id="name">
+                        <input type="text" class="profile-form__input" name="name" id="name" value="<?= old('name') ?? $userData['name'] ?? '' ?>">
                         <label class="profile-form__label" for="name">Nombre</label>
                     </div>
+                    <?= validation_show_error('lastName', 'alert-error') ?>
                     <div class="profile-form__field">
-                        <input type="text" class="profile-form__input" name="Apellido" id="Apellido">
-                        <label class="profile-form__label" for="Apellido">Apellido</label>
+                        <input type="text" class="profile-form__input" name="lastName" id="lastName" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>">
+                        <label class="profile-form__label" for="lastName">Apellido</label>
                     </div>
+                    <?= validation_show_error('email', 'alert-error') ?>
                     <div class="profile-form__field">
-                        <input type="email" class="profile-form__input" name="email" id="email">
+                        <input type="email" class="profile-form__input" name="email" id="email" value="<?= old('email') ?? $userData['email'] ?? '' ?>">
                         <label class="profile-form__label" for="email">Correo electrónico</label>
                     </div>
+                    <?= validation_show_error('cardNumber', 'alert-error') ?>
                     <div class="profile-form__field">
-                        <input type="numer" class="profile-form__input" name="card" id="card">
+                        <input type="numer" class="profile-form__input" name="cardNumber" id="card" value="<?= old('cardNumber') ?? $userDetails['cardNumber'] ?? '' ?>">
                         <label class="profile-form__label" for="card">No. de Tarjeta</label>
                     </div>
                 </div>
             </div>
+
             <div class="profile-form__field profile-form__field--textarea">
-                <textarea name="description" id="description" class="profile-form__input profile-form__input--textarea"></textarea>
+                <textarea name="description" id="description" class="profile-form__input profile-form__input--textarea"><?= old('description') ?? $userDetails['description'] ?? '' ?></textarea>
                 <label for="description" class="profile-form__label">Descripción</label>
             </div>
             <div class="buttons">
                 <input type="submit" class="buttons__button buttons__button--submit" value="Actualizar">
-                <a href="#" class="buttons__button buttons__button--cancel">Cancelar</a>
+                <a href="/user/<?= session()->get('user')['userId'] ?>/edit" class="buttons__button buttons__button--cancel">Cancelar</a>
             </div>
         </div>
+        <input type="hidden" id="fileImageBackground" name="fileImageBackground" value="<?= esc(json_encode($imageBackground)) ?>">
+        <input type="hidden" id="fileImageProfile" name="fileImageProfle" value="<?= esc(json_encode($imageProfile)) ?>">
+        <input type="hidden" name="userDetailId" value="<?= old('userDetailId') ?? $userDetails['userDetailId'] ?? '' ?>">
     </form>
 </main>
 
@@ -88,9 +89,12 @@
         <button class="personals-block-edit__add"><img src="/assets/images/plus-icon.svg" alt="add-icon"></button>
     </div>
 
-    <?= view("components/personalBlocks", ['edit' => true]) ?>
+    <?php if ($personalBlocks ?? null) { ?>
+        <?= view("components/personalBlocks", ['edit' => true, 'personalBlocks' => $personalBlocks]) ?>
+    <?php } else { ?>
+        <p>¡Registra un nuevo bloque para que te conozcan mejor!</p>
+    <?php } ?>
 </section>
-
 
 <div class="modal modal--none">
     <div class="modal__content">

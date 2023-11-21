@@ -132,3 +132,8 @@ node_modules/
 # Assets
 public/assets/css/
 public/assets/js/
+
+
+#Files 
+public/tmp/
+public/uploads/

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ArtStyle extends Migration
+class ArtStyleMigrate extends Migration
 {
     public function up()
     {
