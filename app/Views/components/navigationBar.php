@@ -1,8 +1,10 @@
 <nav class="navbar">
+    <?php if (!session()->has('user')): ?>
     <div class="navbar-left">
         <a href="/auth/login"><strong>Iniciar Sesión</strong></a>
         <a href="/auth/signup"><strong>Registrarse</strong></a>
     </div>
+    <?php endif ?>
     <div class="navbar-center">
         <a class="navbar-brand" href="/">ArtZone</a>
     </div>
@@ -34,14 +36,14 @@
 </nav>
 
 <script>
-    const perfilButton = document.getElementById("perfilButton");
-    const profileOptions = document.getElementById("profileOptions");
+const perfilButton = document.getElementById("perfilButton");
+const profileOptions = document.getElementById("profileOptions");
 
-    perfilButton.addEventListener("mouseover", function () {
-        profileOptions.style.display = "block";
-    });
+perfilButton.addEventListener("mouseover", function() {
+    profileOptions.style.display = "block";
+});
 
-    perfilButton.addEventListener("mouseout", function () {
-        profileOptions.style.display = "none";
-    });
+perfilButton.addEventListener("mouseout", function() {
+    profileOptions.style.display = "none";
+});
 </script>
