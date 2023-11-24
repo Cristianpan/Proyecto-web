@@ -22,7 +22,7 @@ class FileModel extends Model
 
     protected function getFileEntity(array $data)
     {
-        $uuid                               = $data['data']['uuid'];
+        $uuid                               = $data['data']['fileId'];
         $outputFolder                       = FILES_UPLOAD_DIRECTORY . $uuid;
         $sourceFolder                       = FILES_TEMPORAL_DIRECTORY . $uuid;
         $filePath                           = scandir($sourceFolder)[2];
@@ -34,15 +34,15 @@ class FileModel extends Model
 
     protected function saveFile(array $data)
     {
-        $uuid = $data['data']['uuid'];
+        $uuid = $data['data']['fileId'];
         $sourcePath = FILES_TEMPORAL_DIRECTORY . $uuid;
         $outputFolder = FILES_UPLOAD_DIRECTORY . $uuid;
         FileManager::changeDirectoryFolder($sourcePath, $outputFolder);
     }
 
-    public function deleteFile(String $uuid)
+    public function deleteFile(String $fileId)
     {
-        $this->where('uuid', $uuid)->delete();
-        FileManager::deleteFolderWithContent(FILES_UPLOAD_DIRECTORY . $uuid);
+        $this->delete($fileId);
+        FileManager::deleteFolderWithContent(FILES_UPLOAD_DIRECTORY . $fileId);
     }
 }

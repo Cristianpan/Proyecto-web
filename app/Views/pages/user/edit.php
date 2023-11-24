@@ -20,10 +20,9 @@
 
     <form class="profile-form" method="post">
         <div class="profile-form__section">
+            <?= validation_show_error('imageProfile', 'alert-error') ?>
             <div class="profile-form__field profile-form__field--file">
-                <?= validation_show_error('imageProfile', 'alert-error') ?>
-                <input id="imageProfile" name="imageProfile" type="file" />
-                <div id="delete-imageProfile"></div>
+                <?= view("components/filePondInput", ['inputName' => 'imageProfile', 'deleteFiles' => $imageProfile['deleteFiles'] ?? []]) ?>
             </div>
             <div class="profile-form__field profile-form__field--select">
                 <?= validation_show_error('occupationId', 'alert-error') ?>
@@ -40,8 +39,8 @@
                 <div class="flex__content">
                     <?= validation_show_error('imageBackground', 'alert-error') ?>
                     <div class="profile-form__field profile-form__field--file">
-                        <input class="filepond-input-multiple" id="imageBackground" name="imageBackground" type="file" />
-                        <div id="delete-imageBackground"></div>
+                        <?= view("components/filePondInput", ['inputName' => 'imageBackground', 'deleteFiles' => $imageBackground['deleteFiles'] ?? []]) ?>
+
                     </div>
                 </div>
                 <div class="flex__content">
@@ -77,10 +76,10 @@
                 <a href="/user/<?= session()->get('user')['userId'] ?>/edit" class="buttons__button buttons__button--cancel">Cancelar</a>
             </div>
         </div>
-        <input type="hidden" id="fileImageBackground" name="fileImageBackground" value="<?= esc(json_encode($imageBackground)) ?>">
-        <input type="hidden" id="fileImageProfile" name="fileImageProfle" value="<?= esc(json_encode($imageProfile)) ?>">
         <input type="hidden" name="userDetailId" value="<?= old('userDetailId') ?? $userDetails['userDetailId'] ?? '' ?>">
     </form>
+    <input type="hidden" id="imageBackgroundConfig" name="fileImageBackground" value="<?= esc(json_encode($imageBackground)) ?>">
+    <input type="hidden" id="imageProfileConfig" name="fileImageProfle" value="<?= esc(json_encode($imageProfile)) ?>">
 </main>
 
 <section class="container personals-block-edit">

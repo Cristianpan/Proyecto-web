@@ -1,7 +1,5 @@
 <div class="swiper personal-blocks ">
     <div class="swiper-wrapper">
-
-
         <?php
         $i = 0; 
          foreach ($personalBlocks as $personalBlock) : ?>

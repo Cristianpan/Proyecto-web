@@ -60,12 +60,12 @@ class CtrlAuth extends BaseController
             $user = (new User())->where('email', $userData['email'])->first();
             $loginValidator->validateCredentials($user, $userData['password']);
 
-            $userDetails = (new UserDetails())->where('userId', $user['userId'])->first(); 
             session()->set('user', [
                 'userId' => $user['userId'],
                 'email' => $user['email']
             ]);
-
+            
+            $userDetails = (new UserDetails())->where('userId', $user['userId'])->first(); 
             if (!$userDetails){
                 $response = [
                     'title' => '¡Bienvenido de vuelta!',

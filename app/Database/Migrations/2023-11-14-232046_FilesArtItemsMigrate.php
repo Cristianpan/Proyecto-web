@@ -17,15 +17,11 @@ class ArtItemFilesMigrate extends Migration
                 'type' => 'varchar', 
                 'constraint' => 255, 
             ], 
-            'fileId' => [
-                'type' => 'int'
-            ]
         ]); 
 
-        $this->forge->addForeignKey('fileId', 'files', 'fileId', 'CASCADE', 'CASCADE', 'file_FK'); 
         $this->forge->addForeignKey('artItemId', 'art_items', 'artItemId', 'CASCADE', 'CASCADE', 'art_item_FK'); 
         $this->forge->addKey('artItemFileId', true); 
-        $this->forge->createTable('art_item_fies'); 
+        $this->forge->createTable('art_item_files'); 
     }
 
     public function down()

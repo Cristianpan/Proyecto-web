@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Classes\ClientConfig;
+use App\Classes\ClientValidationConfig;
 use App\Controllers\BaseController;
 use App\Errors\InvalidDataInputException;
 use App\Models\FileModel;
@@ -15,6 +17,15 @@ use App\Validators\UserEditValidation;
 
 class CtrlUserProfile extends BaseController
 {
+    private $configImageBackground; 
+    private $configImageProfile; 
+
+    public function __construct()
+    {
+        $this->configImageBackground = new ClientConfig("imageBackground");
+        $this->configImageProfile = new ClientConfig("imageProfile");
+    }
+    
     public function index()
     {
         return view("pages/user/index", ['personalBlocks' => []]);
@@ -27,15 +38,13 @@ class CtrlUserProfile extends BaseController
         $userData = (new User())->where('userId', $userId)->first();
         $userDetails = (new UserDetails())->where('userId', $userId)->first();
 
-        $imageBackground = (new FileModel())->where('fileId', $userDetails['imageBackground'] ?? '')->first();
-        $imageProfile = (new FileModel())->where('fileId', $userDetails['imageProfile'] ?? '')->first();
-
-        if ($imageBackground) {
-            $imageBackground = FilePondManager::getSource([$imageBackground['uuid']]);
-        }
-
-        if ($imageProfile) {
-            $imageProfile = FilePondManager::getSource([$imageProfile['uuid']]);
+        if (session()->has('clientData')){
+            $clientData = session()->get('clientData'); 
+            $this->configImageBackground->setClientData($clientData); 
+            $this->configImageProfile->setClientData($clientData); 
+        } else {
+            $this->configImageBackground->setFiles([$userDetails['imageBackground'] ?? '']);
+            $this->configImageProfile->setFiles([$userDetails['imageProfile'] ?? '']);
         }
 
         return view("pages/user/edit", [
@@ -43,8 +52,8 @@ class CtrlUserProfile extends BaseController
             'personalBlocks' => $personalBlocks,
             'userData' => $userData,
             'userDetails' => $userDetails,
-            'imageBackground' => $imageBackground,
-            'imageProfile' => $imageProfile,
+            'imageBackground' => $this->configImageBackground->getConfig(),
+            'imageProfile' => $this->configImageProfile->getConfig(),
         ]);
     }
 
@@ -57,36 +66,32 @@ class CtrlUserProfile extends BaseController
 
             (new User())->update($userId, $userData);
 
-            
             $usertDataToSave = [
                 'userId' => $userId,
                 'userDetailId' => $userData['userDetailId'],
                 'description' => $this->request->getPost('description'),
                 'cardNumber' => $this->request->getPost('cardNumber'),
-                'occupationId' => $this->request->getPost('occupationId')
-            ];
-            
-            
-            $auxImageBg = $userData['imageBackground']; 
-            $auxImageProfile = $userData['imageProfile']; 
-            $fileModel = new FileModel();
-            if (!file_exists(FILES_UPLOAD_DIRECTORY . $auxImageBg)){
-                $usertDataToSave['imageBackground'] = $fileModel->insert(['uuid' => $auxImageBg]);
-            }
-            
-            if (!file_exists(FILES_UPLOAD_DIRECTORY . $auxImageProfile)){
-                $usertDataToSave['imageProfile'] = $fileModel->insert(['uuid' => $auxImageProfile]);
-            }
-            
-            (new UserDetails())->save($usertDataToSave);
+                'occupationId' => $this->request->getPost('occupationId'),
+                'imageBackground' => $this->request->getPost('imageBackground')[0],
+                'imageProfile' => $this->request->getPost('imageProfile')[0],
+            ];          
 
-            if (isset($userData['delete-imageBackground'])){
-                $fileModel->where('uuid', $userData['delete-imageBackground'])->delete();
-                FileManager::deleteFolderWithContent($userData['delete-imageBackground']);
+            (new UserDetails())->save($usertDataToSave); 
+
+            if (file_exists(FILES_TEMPORAL_DIRECTORY. $userData['imageProfile'][0])){
+                FileManager::changeDirectoryFolder(FILES_TEMPORAL_DIRECTORY . $userData['imageProfile'][0], FILES_UPLOAD_DIRECTORY . $userData['imageProfile'][0]);
             }
-            if (isset($userData['delete-imageProfile'])){
-                $fileModel->where('uuid', $userData['delete-imageProfile'])->delete();
-                FileManager::deleteFolderWithContent($userData['delete-imageProfile']);
+
+            if (file_exists(FILES_TEMPORAL_DIRECTORY. $userData['imageBackground'][0])){
+                FileManager::changeDirectoryFolder(FILES_TEMPORAL_DIRECTORY . $userData['imageBackground'][0], FILES_UPLOAD_DIRECTORY . $userData['imageBackground'][0]);
+            }
+
+            if (isset($user['delete-imageBackground'][0])){
+                FileManager::deleteFolderWithContent($userData['delete-imageBackground'][0]);
+            }
+
+            if (isset($user['delete-imageProfile'][0])){
+                FileManager::deleteFolderWithContent($userData['delete-imageProfile'][0]);
             }
 
             $response = [
@@ -96,15 +101,8 @@ class CtrlUserProfile extends BaseController
             ];
             return redirect()->to("/user/$userId/edit")->with('response', $response); 
         } catch (InvalidDataInputException $th){
+            session()->setFlashdata('clientData', $this->request->getPost());
             return redirect()->to("/user/$userId/edit")->withInput();
-        } catch (\Throwable $th){
-            $response = [
-                'title' => 'Oops! Ha ocurrido un error',
-                'message' => 'Ha ocurrido un error al actualizar los datos del usuario, por favor intente nuevamente',
-                'type' => 'success'
-            ];
-
-            return redirect()->to("/user/$userId/edit")->withInput()->with('response', $response);
         }
     }
 }
