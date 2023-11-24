@@ -1,20 +1,20 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v; 
 .nav {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    gap: 3rem;
-
-    @include m.telefono {
-        flex-direction: row;
+    display: none;
+    
+    @include m.tablet {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
     }
 
     &__link {
         font-size: 1.6rem;
         color: v.$white;
         text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: lighter;
 
         border-bottom: solid v.$white 0.2rem;
         padding: 1rem 3rem;

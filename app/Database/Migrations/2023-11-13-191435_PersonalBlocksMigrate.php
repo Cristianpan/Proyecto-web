@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PersonalBlocks extends Migration
+class PersonalBlocksMigrate extends Migration
 {
     public function up()
     {

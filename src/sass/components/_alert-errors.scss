@@ -1,0 +1,10 @@
+@use '../base/variables' as v; 
+
+.alert {
+    margin-bottom: 1rem;
+
+    &-danger {
+        color: v.$red;
+    }
+}
+

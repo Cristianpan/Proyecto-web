@@ -17,6 +17,12 @@
     <?= view("components/navigationBar") ?>
 
     <?php $this->renderSection("content") ?>
-
+    <?php
+    if (session()->has('response')) {
+        $response = session()->get('response');
+    ?>
+        <div id="alertElement" data-response="<?= esc(json_encode($response)) ?>"></div>
+    <?php } ?>
+    <script src="/assets/js/alertElement.min.js"></script>
     <?php $this->renderSection("js") ?>
 </body </html>

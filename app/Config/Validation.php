@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\RulesValidation\FileCustomRules;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Validation\StrictRules\CreditCardRules;
 use CodeIgniter\Validation\StrictRules\FileRules;
@@ -25,6 +26,7 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        FileCustomRules::class
     ];
 
     /**
@@ -36,6 +38,7 @@ class Validation extends BaseConfig
     public array $templates = [
         'list'   => 'CodeIgniter\Validation\Views\list',
         'single' => 'CodeIgniter\Validation\Views\single',
+        'alert-error' => '\errors\alerts\alert-danger'
     ];
 
     // --------------------------------------------------------------------

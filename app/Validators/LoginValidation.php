@@ -8,14 +8,14 @@ use App\Validators\BaseValidation;
 class LoginValidation extends BaseValidation
 {
     protected $validationRules = [
-        'user' => 'required|alpha_space', 
+        'email' => 'required|valid_email', 
         'password' => 'required',
     ];
 
     protected $validationMessages = [
-        'user' => [
-            'required' => 'El nombre de usaurio es obligatorio', 
-            'alpha_space' => 'El nombre contiene caracteres invalidos'
+        'email' => [
+            'required' => 'El correo de usuario es obligatorio', 
+            'valid_email' => 'El correo no cuenta con un formato valido.'
         ], 
         'password' => [
             'required' => 'La contraseña es obligatoria', 
@@ -25,7 +25,7 @@ class LoginValidation extends BaseValidation
     public function validateCredentials($user, $password)
     {
         if(!$user || !password_verify($password, $user["password"])) {
-            $this->validator->setError('password', "El usuario y/o contraseña son incorrectos"); 
+            $this->validator->setError('credentials', "El usuario y/o contraseña son incorrectos"); 
             throw new InvalidDataInputException('Usuario y/o contraseña incorrectos', $this->validator->getErrors()); 
         }
         return true;

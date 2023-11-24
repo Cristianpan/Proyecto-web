@@ -92,3 +92,6 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+define('FILES_UPLOAD_DIRECTORY', './uploads/');
+define('FILES_TEMPORAL_DIRECTORY', './tmp/');
