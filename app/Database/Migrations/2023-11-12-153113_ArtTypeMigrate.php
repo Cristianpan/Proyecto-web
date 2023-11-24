@@ -4,27 +4,28 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ArtStyleMigrate extends Migration
+class ArtTypeMigrate extends Migration
 {
+
     public function up()
     {
         $this->forge->addField([
-            'artStyleId' => [
+            'artTypeId' => [
                 'type' => 'int', 
                 'auto_increment' => true
             ], 
-            'artStyleType' => [
+            'artType' => [
                 'type' => 'varchar', 
                 'constraint' => 30,
             ], 
         ]); 
 
-        $this->forge->addKey('artStyleId', true); 
-        $this->forge->createTable('art_styles');
+        $this->forge->addKey('artTypeId', true); 
+        $this->forge->createTable('art_types');
     }
-    
+
     public function down()
     {
-        $this->forge->dropTable('art_styles');
+        $this->forge->dropTable('art_types');
     }
 }

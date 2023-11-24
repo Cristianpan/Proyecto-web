@@ -20,6 +20,9 @@ class ArtItemsMigrate extends Migration
             'artStyleId' => [
                 'type' => 'int'
             ],
+            'artTypeId' =>[
+                'type' => 'int'
+            ],
             'name' => [
                 'type' => 'varchar',
                 'constraint' => 50,  
@@ -53,6 +56,7 @@ class ArtItemsMigrate extends Migration
             ]
         ]); 
 
+        $this->forge->addForeignKey('artTypeId', 'art_types', 'artTypeId', 'NO ACTION', 'NO ACTION', "artItems_artType_FK"); 
         $this->forge->addForeignKey('artStyleId', 'art_styles', 'artStyleId', 'NO ACTION', 'NO ACTION', "artItems_artStyle_FK"); 
         $this->forge->addForeignKey('userId', 'users', 'userId', 'CASCADE', 'CASCADE', "artItems_user_FK"); 
         $this->forge->addKey('artItemId', true); 

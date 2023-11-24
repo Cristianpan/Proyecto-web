@@ -24,4 +24,8 @@ class CtrlShop extends BaseController
     {
         return view("pages/shop/item");
     }
+
+    public function payment(){
+        return "...pagando";
+    }
 }

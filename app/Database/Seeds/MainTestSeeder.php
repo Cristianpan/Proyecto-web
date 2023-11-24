@@ -11,5 +11,7 @@ class MainTestSeeder extends Seeder
         $this->call('UserSeeder');
         $this->call('PersonalBlockSeeder');
         $this->call('OccupationSeeder');
+        $this->call('ArtStyleSeeder');
+        $this->call('ArtItemSeeder');
     }
 }

@@ -13,7 +13,7 @@ class OccupationMigrate extends Migration
                 'type' => 'int', 
                 'auto_increment' => true, 
             ],
-            'type' => [
+            'occupationType' => [
                 'type' => 'varchar', 
                 'constraint' => 30, 
             ]

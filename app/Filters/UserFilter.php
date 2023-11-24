@@ -24,10 +24,8 @@ class UserFilter implements FilterInterface
      * @return mixed
      */
     public function before(RequestInterface $request, $arguments = null)
-    {
-
+    {  
         $userId = $request->getUri()->getSegments()[1] ?? null;
-
         if (!$userId || $userId !== session()->get('user')['userId']){
             return redirect()->to("/"); 
         }
