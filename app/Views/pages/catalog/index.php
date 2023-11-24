@@ -21,7 +21,7 @@
 </div>
 
 <main class="container catalog">
-    <a href="/user/catalog/item" class="catalog__add-button">
+    <a href="/user/<?=session()->get('user')['userId']?>/catalog/create" class="catalog__add-button">
         <span class="catalog__hidden">Agregar Obra</span>
     </a>
 

@@ -28,8 +28,10 @@
                 <?= validation_show_error('occupationId', 'alert-error') ?>
                 <select id="profesion" name="occupationId" class="profile-form__input profile-form__input--select">
                     <option value="">Ocupación</option>
-                    <?php foreach ($occupations as $occupation) : ?>
-                        <option value="<?= $occupation['occupationId'] ?>" <?= isset($userDetails['occupationId']) && $userDetails['occupationId'] == $occupation['occupationId'] ? 'selected' : '' ?>><?= $occupation['type'] ?></option>
+                    <?php foreach ($occupations as $occupation) : 
+                        $auxOccupation = old('occupationId') ?? $userDetails['occupationId'] ?? ''; 
+                    ?>
+                        <option value="<?= $occupation['occupationId'] ?>" <?= $auxOccupation == $occupation['occupationId'] ? 'selected' : '' ?>><?= $occupation['occupationType'] ?></option>
                     <?php endforeach ?>
                 </select>
             </div>
