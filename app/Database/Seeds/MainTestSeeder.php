@@ -13,5 +13,6 @@ class MainTestSeeder extends Seeder
         $this->call('OccupationSeeder');
         $this->call('ArtStyleSeeder');
         $this->call('ArtItemSeeder');
+        $this->call('ArtTypeSeeder');
     }
 }

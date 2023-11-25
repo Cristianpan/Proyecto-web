@@ -56,18 +56,17 @@ class CtrlArtCatalog extends BaseController
             $artItemValidation = new  ArtItemValidation();
             $artItemValidation ->validateInputs($itemData);
 
-            $artItem = new ArtItem();
-            $foundArtItem = $artItem->find($artItemId);
+            $foundArtItem = (new ArtItem())->find($artItemId);
             
             if(!$foundArtItem){
                 throw new ArtItemNotFoundException('El artículo no existe');
             }
 
-            if ($artItem['userId'] !== $userId) {
+            if ($foundArtItem['userId'] !== $userId) {
                 throw new UnauthorizedActionException('No tiene permisos para eliminar este artículo.');
             }
 
-            $artItem->update($artItemId, $itemData);
+            (new ArtItem())->update($artItemId, $itemData);
 
             $response = [
                 'title' => '¡Actualización exitosa!',
