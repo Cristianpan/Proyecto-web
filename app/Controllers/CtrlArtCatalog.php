@@ -7,6 +7,7 @@ use App\Errors\ArtItemNotFoundException;
 use App\Errors\InvalidDataInputException;
 use App\Errors\UnauthorizedActionException;
 use App\Models\ArtItem;
+use App\Validators\ArtItemValidation;
 
 class CtrlArtCatalog extends BaseController
 {
@@ -52,13 +53,29 @@ class CtrlArtCatalog extends BaseController
         try {
             $itemData = $this->request->getPost();
 
+            $artItemValidation = new  ArtItemValidation();
+            $artItemValidation ->validateInputs($itemData);
+
+            $artItem = new ArtItem();
+            $foundArtItem = $artItem->find($artItemId);
+            
+            if(!$foundArtItem){
+                throw new ArtItemNotFoundException('El artículo no existe');
+            }
+
+            if ($artItem['userId'] !== $userId) {
+                throw new UnauthorizedActionException('No tiene permisos para eliminar este artículo.');
+            }
+
+            $artItem->update($artItemId, $itemData);
+
             $response = [
                 'title' => '¡Actualización exitosa!',
                 'message' => 'Los datos de su obra han sido actualizados con exito',
                 'type' => "success",
             ];
             return redirect()->to("/user/$userId/catalog")->with('response', $response);
-        } catch (InvalidDataInputException $th) {
+        } catch (ArtItemNotFoundException|InvalidDataInputException $th) {
             return redirect()->to("/user/$userId/catalog/edit/$artItemId")->withInput();
         } catch (\Throwable $th) {
             $response = [
