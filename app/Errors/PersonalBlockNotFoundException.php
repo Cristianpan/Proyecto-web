@@ -6,15 +6,8 @@ use Exception;
 
 final class PersonalBlockNotFoundException extends Exception 
 {
-    private array $erros;
-
-    public function __construct(String $message, array $errors = [])
+    public function __construct(String $message)
     {
         parent::__construct($message); 
-        $this->erros = $errors;
-    }
-
-    public function getErros() {
-        return $this->erros; 
     }
 }

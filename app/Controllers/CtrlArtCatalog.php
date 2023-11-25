@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Errors\ArtItemNotFoundException;
 use App\Errors\InvalidDataInputException;
+use App\Errors\UnauthorizedActionException;
 use App\Models\ArtItem;
 
 class CtrlArtCatalog extends BaseController
@@ -79,7 +80,7 @@ class CtrlArtCatalog extends BaseController
             }
 
             if ($artItem['userId'] !== $userId) {
-                throw new ArtItemNotFoundException('No tiene permisos para eliminar este artículo.');
+                throw new UnauthorizedActionException('No tiene permisos para eliminar este artículo.');
             }
             $artItemModel->delete($artItemId);
 
@@ -89,7 +90,16 @@ class CtrlArtCatalog extends BaseController
                 'type' => "success",
             ];
             return redirect()->to("/user/$userId/catalog")->with('response', $response);
-        } catch (\Throwable $th) {
+
+        } catch (ArtItemNotFoundException|UnauthorizedActionException $th) {
+            $response = [
+                'title' => '¡Ops! Ha ocurrido un error',
+                'message' => $th->getMessage(),
+                'type' => "error",
+            ];
+            return redirect()->to("/user/$userId/catalog/edit/$artItemId")->with('response', $response);
+
+        }catch (\Throwable $th) {
             $response = [
                 'title' => '¡Ops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al eliminar la obra, por favor intente nuevamente.',
