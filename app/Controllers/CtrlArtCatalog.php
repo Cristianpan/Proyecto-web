@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Errors\InvalidDataInputException;
+use App\Models\ArtItem;
 
 class CtrlArtCatalog extends BaseController
 {
@@ -70,6 +71,23 @@ class CtrlArtCatalog extends BaseController
     public function delete(String $userId, String $artItemId)
     {
         try {
+            // Cargar el modelo de artículos de arte
+            $artItemModel = new ArtItem();
+
+            // Verificar si el artículo de arte existe
+            $artItem = $artItemModel->find($artItemId);
+            if (!$artItem) {
+                throw new \Exception('El artículo de arte no existe.');
+            }
+
+            // Verificar si el usuario es dueño del artículo de arte
+            if ($artItem['userId'] !== $userId) {
+                throw new \Exception('No tiene permisos para eliminar este artículo de arte.');
+            }
+
+            // Eliminar el artículo de arte
+            $artItemModel->delete($artItemId);
+
             $response = [
                 'title' => '¡Eliminación exitosa!',
                 'message' => 'Los datos de la obra han sido eliminados correctamente',
