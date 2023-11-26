@@ -1,6 +1,9 @@
 <?php
 
 use App\Controllers\CtrlApiFiles;
+use App\Controllers\CtrlArtCatalog;
+use App\Controllers\CtrlAuth;
+use App\Controllers\CtrlUserProfile;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -8,16 +11,22 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 //Auth
-$routes->get('/auth/login', 'CtrlAuth::index');
-$routes->post('/auth/login', 'CtrlAuth::login');
-$routes->get('/auth/signup', 'CtrlAuth::signupView');
-$routes->post('/auth/signup', 'CtrlAuth::signup');
-$routes->get('/auth/logout', 'CtrlAuth::logout');
+$routes->get('/login', [CtrlAuth::class, 'index'], ['as' => 'login']);
+$routes->post('/login', [CtrlAuth::class, 'login'], ['as' => 'login']);
+$routes->get('/signup', [CtrlAuth::class, 'signupView'], ['as' => 'signup']);
+$routes->post('/signup', [CtrlAuth::class, 'signup'], ['as' => 'signup']);
+$routes->get('/logout', [CtrlAuth::class, 'logout'], ['as' => 'logout']);
 
 //User
-$routes->get('/user/(:segment)', 'CtrlUserProfile::index'); 
-$routes->get('/user/(:segment)/edit', 'CtrlUserProfile::viewEdit/$1'); 
-$routes->post('/user/(:segment)/edit', 'CtrlUserProfile::edit/$1');
+$routes->get("/(:segment)", [CtrlUserProfile::class, 'index/$1'], ['as' => 'user']);
+$routes->get("/profile/(:segment)", [CtrlUserProfile::class, 'viewEdit/$1'], ['as' => 'user-edit']);
+$routes->post("/profile/(:segment)", [CtrlUserProfile::class, 'edit/$1'], ['as' => 'user-edit']);
+
+
+//items
+$routes->get('/profile/(:segment)/item', [CtrlArtCatalog::class, 'viewCreate'], ['as' => 'item-create']);
+$routes->post('/profile/(:segment)/item', [CtrlArtCatalog::class, 'create/$1'], ['as' => 'item-create']);
+
 
 //Catalog
 $routes->get('/user/(:segment)/catalog', 'CtrlArtCatalog::index'); 

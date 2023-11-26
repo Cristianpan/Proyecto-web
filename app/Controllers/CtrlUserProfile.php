@@ -99,7 +99,7 @@ class CtrlUserProfile extends BaseController
                 'message' => 'Los datos del usuario han sido actualizados correctamente.',
                 'type' => 'success'
             ];
-            return redirect()->to("/user/$userId/edit")->with('response', $response); 
+            return redirect()->to("profile/$userId")->with('response', $response); 
         } catch (InvalidDataInputException $th){
             session()->setFlashdata('clientData', $this->request->getPost());
             return redirect()->to("/user/$userId/edit")->withInput();

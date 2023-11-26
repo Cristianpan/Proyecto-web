@@ -4,6 +4,7 @@ namespace Config;
 
 use App\Filters\AuthFilter;
 use App\Filters\UserFilter;
+use App\Models\UserDetails;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -72,10 +73,11 @@ class Filters extends BaseConfig
      */
     public array $filters = [
         'isAuth' => [
-            'before' => ['user/*/*']
+            'before' => ['/*']
         ], 
         'isUser' => [
-            'before' => ['user/*/*']
+            'before' => ['/profile/*']
         ]
+
     ];
 }

@@ -35,6 +35,7 @@ class CtrlAuth extends BaseController
             session()->set('user', [
                 'userId' => $userId,
                 'name' => $userData['name'],
+                'email' => $userData['email'],
                 'userImage' => '',
             ]);
            
@@ -64,31 +65,32 @@ class CtrlAuth extends BaseController
             $loginValidator = new LoginValidation();
             $loginValidator->validateInputs($userData);
 
-            $user = (new User())->select('users.userId, name, imageProfile, password')->join('userDetails', 'users.userId = userDetails.userId','left')->where('email', $userData['email'])->first();
+            $user = (new User())->select('users.userId, name, imageProfile, email, password')->join('userDetails', 'users.userId = userDetails.userId','left')->where('email', $userData['email'])->first();
             $loginValidator->validateCredentials($user, $userData['password']);
 
             session()->set('user', [
                 'userId' => $user['userId'],
                 'name' => $user['name'], 
-                'userImage' => $user['imageProfile'] ?? ''
+                'email' => $user['email'],
+                'userImage' => $user['imageProfile'] ? $user['imageProfile'] : ''
             ]);
             
-            return redirect()->to("/" . $user['userId']);
+            return redirect("/");
         } catch (InvalidDataInputException $th) {
             return redirect()->to('login')->withInput();
-        } catch (\Throwable $th) {
+        } /* catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al iniciar sesión, por favor intente nuevamente',
                 'type' => 'error',
             ];
             return redirect()->to('login')->withInput()->with('response', $response);
-        } 
+        }  */
     }
 
     public function logout()
     {
         session()->destroy();
-        return redirect()->to("/");
+        return redirect()->to("login");
     }
 }
