@@ -29,30 +29,31 @@ class CtrlAuth extends BaseController
             $signupValidator =  new SignupValidation();
             $signupValidator->validateInputs($userData);
 
-            (new User())->insert($userData);
+            $userId = (new User())->insert($userData);
 
+            
+            session()->set('user', [
+                'userId' => $userId,
+                'name' => $userData['name'],
+                'userImage' => '',
+            ]);
+           
             $response = [
                 'title' => '¡Bienvenido a Art Zone!',
                 'message' => '!Gracias por haberte registrado con nosotros¡ Ahora disfruta de las magníficas obras que tenemos para ti',
                 'type' => 'success'
             ];
 
-            session()->set('user', [
-                'userId' => $userData['userId'],
-                'name' => $userData['name'],
-                'userImage' => '',
-            ]);
-
-            return redirect()->to('/')->with('response', $response);
+            return redirect('/')->with('response', $response);
         } catch (InvalidDataInputException $th) {
-            return redirect()->to('/auth/signup')->withInput();
+            return redirect()->to('signup')->withInput();
         } catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al guardar los datos del usuario, por favor intente nuevamente',
                 'type' => 'error',
             ];
-            return redirect()->to('/auth/signup')->withInput()->with('response', $response);
+            return redirect()->to('signup')->withInput()->with('response', $response);
         }
     }
 
@@ -74,15 +75,15 @@ class CtrlAuth extends BaseController
             
             return redirect()->to("/" . $user['userId']);
         } catch (InvalidDataInputException $th) {
-            return redirect()->to('/auth/login')->withInput();
-        } /* catch (\Throwable $th) {
+            return redirect()->to('login')->withInput();
+        } catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al iniciar sesión, por favor intente nuevamente',
                 'type' => 'error',
             ];
-            return redirect()->to('/auth/login')->withInput()->with('response', $response);
-        } */
+            return redirect()->to('login')->withInput()->with('response', $response);
+        } 
     }
 
     public function logout()
