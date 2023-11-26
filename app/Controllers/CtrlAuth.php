@@ -40,6 +40,7 @@ class CtrlAuth extends BaseController
             session()->set('user', [
                 'userId' => $userData['userId'],
                 'name' => $userData['name'],
+                'userImage' => '',
             ]);
 
             return redirect()->to('/')->with('response', $response);
@@ -71,7 +72,7 @@ class CtrlAuth extends BaseController
                 'userImage' => $user['imageProfile'] ?? ''
             ]);
             
-            return redirect()->to("/user/" . $user['userId']);
+            return redirect()->to("/" . $user['userId']);
         } catch (InvalidDataInputException $th) {
             return redirect()->to('/auth/login')->withInput();
         } /* catch (\Throwable $th) {

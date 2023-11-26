@@ -28,9 +28,12 @@
         <label for="password" class="form__label">Contraseña</label>
         <input class="form__input" type="password" id="password" name="password" placeholder="Contraseña" required>
     </div>
-
+    
+    <div class="form__link-container">
+        <a href="<?=url_to('login')?>" class="form__link">¿Ya tienes una cuenta? Inicia Sesión</a>
+    </div>
+    
     <input type="submit" class="form__submit" value="Registrarse">
 
-    <a href="/auth/login" class="form__link form__link--center">Ya tienes una cuenta? Inicia Sesión</a>
 </form>
 <?php $this->endSection() ?>

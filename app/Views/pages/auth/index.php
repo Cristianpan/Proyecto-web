@@ -17,7 +17,7 @@
     <div class="form__field">
         <label for="email" class="form__label">Correo electrónico</label>
         <?= validation_show_error('email', 'alert-error') ?>
-        <input class="form__input" type="text" id="email" name="email" placeholder="Correo" value="<?= old('email') ?? ''?>">
+        <input class="form__input" type="text" id="email" name="email" placeholder="Correo" value="<?= old('email') ?? '' ?>">
     </div>
     <div class="form__field">
         <label for="password" class="form__label">Contraseña</label>
@@ -25,12 +25,16 @@
         <input class="form__input" type="password" id="password" name="password" placeholder="Contraseña">
     </div>
     <?= validation_show_error('credentials', 'alert-error') ?>
+    <div class="form__link-container">
+        <a class="form__link" href="#">¿Olvidaste tu contraseña?</a>
+    </div>
 
-    <a class="form__link" href="#">¿Olvidaste tu contraseña?</a>
+    <div class="form__link-container">
+        <a href="<?= url_to("signup") ?>" class="form__link">¿No tienes una cuenta? Regístrate</a>
+    </div>
 
-    <input type="submit" class="form__submit" value="Iniciar Sesión ">
-    
-    <a href="/auth/signup" class="form__link form__link--center">¿No tienes una cuenta? Regístrate</a>
+    <input type="submit" class="form__submit" value="Iniciar Sesión">
+
 </form>
 
 <?php $this->endSection() ?>

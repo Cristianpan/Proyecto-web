@@ -28,19 +28,15 @@
         color: v.$white;
     }
 
-    &__link {
-        display: block;
-        margin-top: 3rem;
-        text-align: right;
+    &__link-container {
+        margin-top: 1rem;
+    }
 
+    &__link {
         line-height: 0;
         font-size: 1.6rem;
         color: darken(v.$gray, 20);
         transition: color 0.3s;
-
-        &--center {
-            text-align: center;
-        }
 
         &:hover {
             color: v.$white;
@@ -50,8 +46,7 @@
     &__submit {
         display: block;
         text-align: center;
-        width: 50%;
-        max-width: 20rem;
+        width: 20rem;
         height: 5rem;
         margin: 3rem auto 0 auto;
 
