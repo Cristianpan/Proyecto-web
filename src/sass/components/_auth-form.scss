@@ -2,96 +2,70 @@
 @use "../base/mixins" as m;
 
 .form {
-    color: darken(v.$gray, 10); 
-    width: 85%;
-    @include m.telefono {
-        width: 80%;
-    }
+    width: 75%;
 
     &__field {
-        position: relative; 
         width: 100%;
-        height: 5.5rem;
         margin: 0 auto;
-        margin-bottom: 2rem;
-
-        &--fields {
-            @include m.tablet {
-                @include m.grid(2, 1.5rem); 
-            }
-        }
+        margin-bottom: 1.5rem;
     }
 
     &__label {
-        position: absolute;
-        top: 0.5rem;
-        right: 1.5rem;
-        font-size: 1.4rem;
+        margin-left: 0.5rem;
+        font-size: 1.6rem;
         display: block;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
+        color: v.$white;
     }
 
     &__input {
-        height: 100%;
+        display: block;
         width: 100%;
         border-radius: 1rem;
-        padding: 0 2rem;
+        padding: 1.3rem 2rem;
         font-size: 1.6rem;
-        background-color: lighten(v.$dark, 8); 
-        transition: border-right 0.1s, color 0.2s;
+        background-color: lighten(v.$dark, 8);
         color: v.$white;
-
-        &:focus-visible {
-            border-right: solid v.$brown 0.4rem ;
-            color: v.$white
-        }
     }
 
-    &__enlace {
+    &__link {
         display: block;
+        margin-top: 3rem;
         text-align: right;
-        line-height: 0;
 
+        line-height: 0;
         font-size: 1.6rem;
         color: darken(v.$gray, 20);
         transition: color 0.3s;
 
-        &:hover{
-            color: v.$white;
-        }
-    }
-
-    &__enlace-nav {
-        display: block;
-        font-size: 1.6;
-        text-align: center;
-        color: darken(v.$gray, 10);
-        transition: color 0.3s;
-
-        &:hover{
-            color: v.$white;
+        &--center {
+            text-align: center;
         }
 
-        @include m.tablet {
-            display: none;
+        &:hover {
+            color: v.$white;
         }
     }
 
     &__submit {
         display: block;
-        width: 100%;
-        margin: 4rem 0 2rem 0;
-        padding: 1.5rem;
-        border-radius: 1.2rem;
+        text-align: center;
+        width: 50%;
+        max-width: 20rem;
+        height: 5rem;
+        margin: 3rem auto 0 auto;
+
         background-color: v.$brown;
-        color: v.$white;
-        font-size: 2rem;
+        border-radius: 1rem;
+        
         text-transform: uppercase;
-        transition: background-color 0.3s;
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        color: v.$white;
 
         &:hover {
             cursor: pointer;
-            background-color: lighten(v.$brown, 10); 
+            background-color: lighten(v.$brown, 10);
         }
     }
 

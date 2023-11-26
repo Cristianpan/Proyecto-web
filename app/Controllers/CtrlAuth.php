@@ -32,12 +32,17 @@ class CtrlAuth extends BaseController
             (new User())->insert($userData);
 
             $response = [
-                'title' => 'Registro exitoso',
-                'message' => 'El usuario ha sido registrado, por favor inicie sesión para continuar',
+                'title' => '¡Bienvenido a Art Zone!',
+                'message' => '!Gracias por haberte registrado con nosotros¡ Ahora disfruta de las magníficas obras que tenemos para ti',
                 'type' => 'success'
             ];
 
-            return redirect()->to('/auth/signup')->with('response', $response);
+            session()->set('user', [
+                'userId' => $userData['userId'],
+                'name' => $userData['name'],
+            ]);
+
+            return redirect()->to('/')->with('response', $response);
         } catch (InvalidDataInputException $th) {
             return redirect()->to('/auth/signup')->withInput();
         } catch (\Throwable $th) {
@@ -57,41 +62,31 @@ class CtrlAuth extends BaseController
             $loginValidator = new LoginValidation();
             $loginValidator->validateInputs($userData);
 
-            $user = (new User())->where('email', $userData['email'])->first();
+            $user = (new User())->select('users.userId, name, imageProfile, password')->join('userDetails', 'users.userId = userDetails.userId','left')->where('email', $userData['email'])->first();
             $loginValidator->validateCredentials($user, $userData['password']);
 
             session()->set('user', [
                 'userId' => $user['userId'],
-                'email' => $user['email']
+                'name' => $user['name'], 
+                'userImage' => $user['imageProfile'] ?? ''
             ]);
             
-            $userDetails = (new UserDetails())->where('userId', $user['userId'])->first(); 
-            if (!$userDetails){
-                $response = [
-                    'title' => '¡Bienvenido de vuelta!',
-                    'message' => 'Por favor completa tu registro para poder continuar navegando en el sitio', 
-                    'type' => 'success'
-                ];
-
-                return redirect()->to("/user/" . $user['userId'] . "/edit")->with('response', $response);
-            }
-
-
             return redirect()->to("/user/" . $user['userId']);
         } catch (InvalidDataInputException $th) {
             return redirect()->to('/auth/login')->withInput();
-        } catch (\Throwable $th) {
+        } /* catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al iniciar sesión, por favor intente nuevamente',
                 'type' => 'error',
             ];
             return redirect()->to('/auth/login')->withInput()->with('response', $response);
-        }
+        } */
     }
 
-    public function logout(){
-        session()->destroy(); 
-        return redirect()->to("/"); 
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to("/");
     }
 }

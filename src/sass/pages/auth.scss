@@ -1,7 +1,6 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
 @use "../components/auth-form";
-@use "../components/auth-nav";
 @use "../components/alert-errors";
 @use "../plugins/sweetAlert";
 .auth {
@@ -18,26 +17,17 @@
 
 
     &__container {
-        width: 100%;
+        width: 47%;
         background-color: v.$dark;
         border-radius: 1.5rem;
         padding: 5rem 0;
-
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        @include m.tablet {
-            width: 75%;
-        }
-
-        @include m.desktop {
-            width: 50%;
-        }
     }
 
     &__info {
-        margin: 3rem 0 4rem 0;
+        margin: 3rem 0 5rem 0;
         color: v.$white;
         text-align: center;
     }
@@ -45,12 +35,14 @@
     &__title {
         font-family: 'Lostar', sans-serif;
         font-weight: normal;
-        font-size: 4rem;
+        letter-spacing: 5px;
+        font-size: 4.5rem;
         margin-bottom: 1rem;
+        line-height: 1;
     }
 
     &__description {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
         font-weight: lighter;
     }
 }
