@@ -8,6 +8,7 @@ use App\Errors\InvalidDataInputException;
 use App\Errors\UnauthorizedActionException;
 use App\Models\ArtItem;
 use App\Validators\ArtItemValidation;
+use Throwable;
 
 class CtrlArtCatalog extends BaseController
 {
