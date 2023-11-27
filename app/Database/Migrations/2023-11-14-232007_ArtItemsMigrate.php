@@ -15,7 +15,7 @@ class ArtItemsMigrate extends Migration
             ], 
             'userId' => [
                 'type' => 'varchar', 
-                'constraint' => 32, 
+                'constraint' => 36, 
             ],
             'artStyleId' => [
                 'type' => 'int'
