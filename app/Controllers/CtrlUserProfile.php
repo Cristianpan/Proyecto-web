@@ -78,6 +78,13 @@ class CtrlUserProfile extends BaseController
 
             (new UserDetails())->save($usertDataToSave); 
 
+            session()->set('user', [
+                'userId' => $userId, 
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'userImage' => $this->request->getPost('imageProfile')[0],
+            ]);
+
             if (file_exists(FILES_TEMPORAL_DIRECTORY. $userData['imageProfile'][0])){
                 FileManager::changeDirectoryFolder(FILES_TEMPORAL_DIRECTORY . $userData['imageProfile'][0], FILES_UPLOAD_DIRECTORY . $userData['imageProfile'][0]);
             }
