@@ -9,7 +9,7 @@ class ArtItem extends Model
 {
     protected $table            = 'art_items';
     protected $primaryKey       = 'artItemId';
-    protected $allowedFields    = ['userId','title', 'description','artist'];
+    protected $allowedFields    = ['artStyleId','artTypeId','name','materials','shortDescription','description','measurements','localOrigin','onSale','price'];
 
     // Dates
     protected $useTimestamps = false;
