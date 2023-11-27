@@ -26,7 +26,7 @@ class CtrlUserProfile extends BaseController
         $this->configImageProfile = new ClientConfig("imageProfile");
     }
     
-    public function index()
+    public function index(String $userId)
     {
         return view("pages/user/index", ['personalBlocks' => []]);
     }

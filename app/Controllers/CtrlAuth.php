@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserDetails;
 use App\Validators\LoginValidation;
 use App\Validators\SignupValidation;
+use Faker\Core\Uuid;
 
 class CtrlAuth extends BaseController
 {
@@ -29,11 +30,13 @@ class CtrlAuth extends BaseController
             $signupValidator =  new SignupValidation();
             $signupValidator->validateInputs($userData);
 
-            $userId = (new User())->insert($userData);
+            $userData['userId'] = (new Uuid())->uuid3();
+
+            (new User())->insert($userData);
 
             
             session()->set('user', [
-                'userId' => $userId,
+                'userId' => $userData['userId'],
                 'name' => $userData['name'],
                 'email' => $userData['email'],
                 'userImage' => '',

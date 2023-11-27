@@ -11,7 +11,7 @@
 <?php $this->endSection() ?>
 
 <?php $this->section("js") ?>
-<script src="/assets/js/personalBlocks.min.js"></script>
+<script src="/assets/js/personalBlocksSwiper.min.js"></script>
 <?php $this->endSection() ?>
 
 

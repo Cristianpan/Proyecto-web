@@ -3,6 +3,7 @@
 use App\Controllers\CtrlApiFiles;
 use App\Controllers\CtrlArtCatalog;
 use App\Controllers\CtrlAuth;
+use App\Controllers\CtrlPersonalBlock;
 use App\Controllers\CtrlUserProfile;
 use CodeIgniter\Router\RouteCollection;
 
@@ -23,6 +24,12 @@ $routes->get("/profile/(:segment)", [CtrlUserProfile::class, 'viewEdit/$1'], ['a
 $routes->post("/profile/(:segment)", [CtrlUserProfile::class, 'edit/$1'], ['as' => 'user-edit']);
 
 
+//Personal blocks
+$routes->post('/profile/(:segment)/personalBlock', [CtrlPersonalBlock::class, 'create/$1'], ['as' => 'personal-block']);
+$routes->put('/profile/(:segment)/personalBlock/(:segment)', [CtrlPersonalBlock::class, 'update/$1/$2'], ['as' => 'personal-block']);
+$routes->delete('/profile/(:segment)/personalBlock/(:segment)', [CtrlPersonalBlock::class, 'delete/$1/$2'], ['as' => 'personal-block']);
+
+
 //items
 $routes->get('/profile/(:segment)/item', [CtrlArtCatalog::class, 'viewCreate'], ['as' => 'item-create']);
 $routes->post('/profile/(:segment)/item', [CtrlArtCatalog::class, 'create/$1'], ['as' => 'item-create']);
@@ -38,10 +45,6 @@ $routes->get('/user/(:segment)/catalog/edit/(:segment)', 'CtrlArtCatalog::viewCr
 $routes->post('/user/(:segment)/catalog/edit/(:segment)', 'CtrlArtCatalog::edit/$1/$2'); 
 $routes->post('/user/(:segment)/catalog/delete/(:segment)', 'CtrlArtCatalog::delete/$1/$2'); 
 
-//Personal blocks
-$routes->post('/user/(:segment)/personalBlock/create', 'CtrlPersonalBlock::create/$1'); 
-$routes->put('/user/(:segment)/personalBlock/edit/(:segment)', 'CtrlPersonalBlock::update/$1/$2'); 
-$routes->delete('/user/(:segment)/personalBlock/delete/(:segment)', 'CtrlPersonalBlock::delete/$1/$2'); 
 
 //Shop
 $routes->get('/', 'CtrlShop::index'); 
