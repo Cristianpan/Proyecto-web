@@ -34,9 +34,9 @@ class CtrlArtCatalog extends BaseController
             $artItemValidation = new ArtItemValidation();
             $artItemValidation->validateInputs($itemData);
     
+            $artItem = new ArtItem();
             $itemData['userId'] = $userId; 
     
-            $artItem = new ArtItem();
             $artItemId = $artItem->insert($itemData);
     
             $response = [
