@@ -6,6 +6,7 @@ import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orien
 import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
+import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
 
 
 FilePond.registerPlugin(
@@ -14,7 +15,8 @@ FilePond.registerPlugin(
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,
   FilePondPluginFileValidateType,
-  FilePondPluginFileValidateSize
+  FilePondPluginFileValidateSize,
+  FilePondPluginImageCrop
 );
 
 export function createPond(input, config, name) {
@@ -22,7 +24,6 @@ export function createPond(input, config, name) {
     labelIdle:
       'Arrastra y suelta tu foto de perfil o  <u style="cursor:pointer;">Selecciona</u>',
     imagePreviewHeight: 240,
-    imageCropAspectRatio: "1:1",
     imageResizeTargetWidth: 200,
     imageResizeTargetHeight: 200,
     acceptedFileTypes: ["image/png", "image/jpg", "image/jpeg"],
@@ -32,6 +33,7 @@ export function createPond(input, config, name) {
     chunkSize: 100000,
     ...config,
     server: getServerOptions(name),
+
   });
 
   return pond;

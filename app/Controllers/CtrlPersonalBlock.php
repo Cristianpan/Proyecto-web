@@ -8,6 +8,7 @@ use App\Errors\PersonalBlockNotFoundException;
 use App\Models\PersonalBlock;
 use App\Validators\PersonalBlockValidation;
 use CodeIgniter\HTTP\Response;
+use Faker\Core\Uuid;
 use Throwable;
 
 class CtrlPersonalBlock extends BaseController
@@ -21,11 +22,14 @@ class CtrlPersonalBlock extends BaseController
 
             $personalBlock = new PersonalBlock();
             $dataPersonalBlock['userId'] = $userId;
+            $dataPersonalBlock['personalBlockId'] = (new Uuid())->uuid3();
 
-            $personalBlockId = $personalBlock->insert($dataPersonalBlock);
+            //return $this->response->setJSON($dataPersonalBlock);
+
+            $personalBlock->insert($dataPersonalBlock);
 
             $body = [
-                'personalBlockId' => $personalBlockId, // Obtener el ID del ultimo registro insertado
+                'personalBlockId' => $dataPersonalBlock['personalBlockId'],
                 'userId' => $userId,
                 'title' => $dataPersonalBlock['title'],
                 'description' => $dataPersonalBlock['description']
@@ -35,8 +39,8 @@ class CtrlPersonalBlock extends BaseController
 
         } catch (InvalidDataInputException $th) {
             return $this->response->setJSON(['ok' => false, 'body' => $th->getErros()])->setStatusCode(400);
-        } catch (\Throwable $th) {
-            var_dump($th->getMessage());
+        } catch (\Throwable $th){
+            return $this->response->setJSON($th);
         }
     }
 

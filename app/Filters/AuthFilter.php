@@ -25,8 +25,13 @@ class AuthFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (!session()->has('user')){
-            return redirect()->to("/"); 
+        $segment = $request->getUri()->getSegments()[0] ?? '';
+
+        if (!$segment || ($segment !== 'login' && $segment !== 'signup')) {
+
+            if (!session()->has('user')) {
+                return redirect()->to("/login");
+            }
         }
     }
 

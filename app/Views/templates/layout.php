@@ -24,5 +24,6 @@
         <div id="alertElement" data-response="<?= esc(json_encode($response)) ?>"></div>
     <?php } ?>
     <script src="/assets/js/alertElement.min.js"></script>
+    <script src="/assets/js/navbar.min.js"></script>
     <?php $this->renderSection("js") ?>
 </body </html>

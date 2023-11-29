@@ -13,7 +13,6 @@
 <?php $this->section("content") ?>
 
 <main class="container home">
-    <?= view("components/searchBar") ?>
     <?= view("components/gallery") ?>
 </main>
 <?php $this->endSection() ?>

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserDetails;
 use App\Validators\LoginValidation;
 use App\Validators\SignupValidation;
+use Faker\Core\Uuid;
 
 class CtrlAuth extends BaseController
 {
@@ -29,24 +30,34 @@ class CtrlAuth extends BaseController
             $signupValidator =  new SignupValidation();
             $signupValidator->validateInputs($userData);
 
+            $userData['userId'] = (new Uuid())->uuid3();
+
             (new User())->insert($userData);
 
+            
+            session()->set('user', [
+                'userId' => $userData['userId'],
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'userImage' => '',
+            ]);
+           
             $response = [
-                'title' => 'Registro exitoso',
-                'message' => 'El usuario ha sido registrado, por favor inicie sesión para continuar',
+                'title' => '¡Bienvenido a Art Zone!',
+                'message' => '!Gracias por haberte registrado con nosotros¡ Ahora disfruta de las magníficas obras que tenemos para ti',
                 'type' => 'success'
             ];
 
-            return redirect()->to('/auth/signup')->with('response', $response);
+            return redirect('/')->with('response', $response);
         } catch (InvalidDataInputException $th) {
-            return redirect()->to('/auth/signup')->withInput();
+            return redirect()->to('signup')->withInput();
         } catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al guardar los datos del usuario, por favor intente nuevamente',
                 'type' => 'error',
             ];
-            return redirect()->to('/auth/signup')->withInput()->with('response', $response);
+            return redirect()->to('signup')->withInput()->with('response', $response);
         }
     }
 
@@ -57,41 +68,32 @@ class CtrlAuth extends BaseController
             $loginValidator = new LoginValidation();
             $loginValidator->validateInputs($userData);
 
-            $user = (new User())->where('email', $userData['email'])->first();
+            $user = (new User())->select('users.userId, name, imageProfile, email, password')->join('userDetails', 'users.userId = userDetails.userId','left')->where('email', $userData['email'])->first();
             $loginValidator->validateCredentials($user, $userData['password']);
 
             session()->set('user', [
                 'userId' => $user['userId'],
-                'email' => $user['email']
+                'name' => $user['name'], 
+                'email' => $user['email'],
+                'userImage' => $user['imageProfile'] ? $user['imageProfile'] : ''
             ]);
             
-            $userDetails = (new UserDetails())->where('userId', $user['userId'])->first(); 
-            if (!$userDetails){
-                $response = [
-                    'title' => '¡Bienvenido de vuelta!',
-                    'message' => 'Por favor completa tu registro para poder continuar navegando en el sitio', 
-                    'type' => 'success'
-                ];
-
-                return redirect()->to("/user/" . $user['userId'] . "/edit")->with('response', $response);
-            }
-
-
-            return redirect()->to("/user/" . $user['userId']);
+            return redirect("/");
         } catch (InvalidDataInputException $th) {
-            return redirect()->to('/auth/login')->withInput();
-        } catch (\Throwable $th) {
+            return redirect()->to('login')->withInput();
+        } /* catch (\Throwable $th) {
             $response = [
                 'title' => 'Oops! Ha ocurrido un error',
                 'message' => 'Ha ocurrido un error al iniciar sesión, por favor intente nuevamente',
                 'type' => 'error',
             ];
-            return redirect()->to('/auth/login')->withInput()->with('response', $response);
-        }
+            return redirect()->to('login')->withInput()->with('response', $response);
+        }  */
     }
 
-    public function logout(){
-        session()->destroy(); 
-        return redirect()->to("/"); 
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to("login");
     }
 }

@@ -14,7 +14,7 @@ class CtrlApiFiles extends BaseController
         try {
             $fileKey = $this->request->getGet()['file'];
             $fileRoute = FILES_UPLOAD_DIRECTORY . $fileKey;
-            $file = FileManager::getFileFromFolder($fileRoute)[0]; // example
+            $file = FileManager::getFileFromFolder($fileRoute)[0];
 
             return $this->response->setStatusCode(Response::HTTP_OK)->download($file, null, true);
         } catch (Throwable $th) {
