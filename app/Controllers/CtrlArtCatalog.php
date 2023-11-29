@@ -8,6 +8,7 @@ use App\Errors\InvalidDataInputException;
 use App\Errors\UnauthorizedActionException;
 use App\Models\ArtItem;
 use App\Validators\ArtItemValidation;
+use Throwable;
 
 class CtrlArtCatalog extends BaseController
 {
@@ -29,15 +30,25 @@ class CtrlArtCatalog extends BaseController
     {
         try {
             $itemData = $this->request->getPost();
-
+    
+            $artItemValidation = new ArtItemValidation();
+            $artItemValidation->validateInputs($itemData);
+    
+            $artItem = new ArtItem();
+            $itemData['userId'] = $userId; 
+    
+            $artItemId = $artItem->insert($itemData);
+    
             $response = [
                 'title' => '¡Creación exitosa!',
-                'message' => 'Los datos de su obra de arte han sido guardado con exito',
+                'message' => 'Los datos de su obra de arte han sido guardados con éxito',
                 'type' => "success",
             ];
             return redirect()->to("/user/$userId/catalog")->with('response', $response);
+    
         } catch (InvalidDataInputException $th) {
             return redirect()->to("/user/$userId/catalog/create")->withInput();
+    
         } catch (\Throwable $th) {
             $response = [
                 'title' => '¡Ops! Ha ocurrido un error',
@@ -47,6 +58,8 @@ class CtrlArtCatalog extends BaseController
             return redirect()->to("/user/$userId/catalog/create")->withInput()->with('response', $response);
         }
     }
+    
+    
 
     public function edit(String $userId, String $artItemId)
     {

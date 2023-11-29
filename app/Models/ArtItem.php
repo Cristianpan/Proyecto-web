@@ -20,7 +20,7 @@ class ArtItem extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setId'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
@@ -32,7 +32,6 @@ class ArtItem extends Model
 
     public function setId(array $data){
         $data['data']['artItemId'] = (new Uuid())->uuid3();
-
         return $data; 
     }
 }
