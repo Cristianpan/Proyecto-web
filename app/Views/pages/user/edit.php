@@ -104,11 +104,11 @@
         <form class="modal-form" method="post">
             <div class="modal-form__field">
                 <label class="modal-form__label" for="block-name">Titulo</label>
-                <input class="modal-form__input" type="text" id="block-name" name="title" placeholder="Ingresa un título a historia" required>
+                <input class="modal-form__input" type="text" id="block-name" name="title" placeholder="Ingresa un título a historia" maxlength="30" required>
             </div>
             <div class="modal-form__field">
                 <label class="modal-form__label" for="block-description">Descripción</label>
-                <textarea class="modal-form__input modal-form__input--textarea" id="block-description" placeholder="¡Cuéntanos sobre tí!" name="description" required></textarea>
+                <textarea class="modal-form__input modal-form__input--textarea" id="block-description" placeholder="¡Cuéntanos sobre tí!" name="description" minlength="100" maxlength="200" required></textarea>
             </div>
 
             <div class="buttons">
