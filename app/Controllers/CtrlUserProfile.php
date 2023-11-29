@@ -26,7 +26,7 @@ class CtrlUserProfile extends BaseController
         $this->configImageProfile = new ClientConfig("imageProfile");
     }
     
-    public function index()
+    public function index(String $userId)
     {
         return view("pages/user/index", ['personalBlocks' => []]);
     }
@@ -78,6 +78,13 @@ class CtrlUserProfile extends BaseController
 
             (new UserDetails())->save($usertDataToSave); 
 
+            session()->set('user', [
+                'userId' => $userId, 
+                'name' => $userData['name'],
+                'email' => $userData['email'],
+                'userImage' => $this->request->getPost('imageProfile')[0],
+            ]);
+
             if (file_exists(FILES_TEMPORAL_DIRECTORY. $userData['imageProfile'][0])){
                 FileManager::changeDirectoryFolder(FILES_TEMPORAL_DIRECTORY . $userData['imageProfile'][0], FILES_UPLOAD_DIRECTORY . $userData['imageProfile'][0]);
             }
@@ -99,7 +106,7 @@ class CtrlUserProfile extends BaseController
                 'message' => 'Los datos del usuario han sido actualizados correctamente.',
                 'type' => 'success'
             ];
-            return redirect()->to("/user/$userId/edit")->with('response', $response); 
+            return redirect()->to("profile/$userId")->with('response', $response); 
         } catch (InvalidDataInputException $th){
             session()->setFlashdata('clientData', $this->request->getPost());
             return redirect()->to("/user/$userId/edit")->withInput();

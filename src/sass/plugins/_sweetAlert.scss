@@ -15,26 +15,41 @@
 }
 
 .swal2-actions {
+  width: 100%;
   .swal2-confirm {
+    display: block !important;
     margin-top: 2rem;
-    font-size: 1.6rem;
-    padding: 2rem 5rem;
-    color: v.$dark;
+    font-size: 1.8rem;
+    height: 4rem;
+    min-width: 20rem;
+    width: 30%;
+    background-color: darken(v.$orange, 20) !important;
+    letter-spacing: 2px;
+  }
+  
+  .swal2-cancel {
+    display: block !important;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    height: 4rem;
+    min-width: 20rem;
+    width: 30%;
+    background-color: darken(v.$gray, 50) !important;
+    letter-spacing: 2px;
   }
 }
 
 .swal2-popup {
-  width: 90%;
+  width: 95%;
   border-radius: 2rem;
   margin: 0 auto;
   padding: 4rem 0;
-  @include m.tablet {
-    width: 85%;
-    padding: 10rem 0;
-  }
 
   @include m.desktop {
-    width: 55%;
+    width: 75%;
+  }
+  @include m.desktop {
+    width: 50%;
   }
 }
 
@@ -50,14 +65,28 @@
     }
 
     &--success {
-      color: darken(v.$lightGreen,10);
+      color: darken(v.$orange,20);
     }
   }
 
   &__text {
     margin: 0 auto;
-    width: 75%;
+    width: 95%;
     font-size: 1.6rem;
     color: v.$dark;
+  }
+  &__logo {
+    margin-bottom: 1rem;
+    
+    color: v.$dark;
+    font-family: 'Lostar', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 4rem;
+    text-transform: uppercase;
+    
+    @include m.tablet {
+        letter-spacing: 5px;
+        font-size: 5rem;
+    }
   }
 }

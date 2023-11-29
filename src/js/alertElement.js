@@ -9,11 +9,13 @@ import Swal from 'sweetalert2';
 
         setTimeout(function(){
             Swal.fire({
-                html: `<h1 class="logo">Art Zone</h1>
+                html: `<h1 class="sweet__logo">Art Zone</h1>
                     <h2 class="sweet__title sweet__title--${responseData.type}">${responseData.title}</h2>
                     <p class="sweet__text">${responseData.message}<p>
                 `, 
-                confirmButtonColor: '#84A98C', 
+                confirmButtonText: 'De Acuerdo'
+
+                
             })
         }, 5)
     }
