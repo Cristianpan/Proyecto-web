@@ -1,7 +1,6 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v;
 @use '../components/gallery';
-@use '../components/searchBar';
 
 .catalog {
   &__add-button {
