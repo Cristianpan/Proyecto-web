@@ -13,7 +13,7 @@
     <p class="auth__description">¡Bienvenido de vuelta!</p>
 </div>
 
-<form class="form" method="post">
+<form class="form" method="post" autocomplete="off" >
     <div class="form__field">
         <label for="email" class="form__label">Correo electrónico</label>
         <?= validation_show_error('email', 'alert-error') ?>

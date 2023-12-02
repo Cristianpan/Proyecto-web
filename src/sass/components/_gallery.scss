@@ -3,14 +3,22 @@
 
 .gallery {
     max-width: 127rem;
-    height: 100%;
     margin: 1rem 0 2rem 0; 
-    columns: 5 15rem;
+    columns: 2 15rem;
     gap: 2rem;
     
+    @include m.telefono {
+        columns: 3;
+        gap: 3rem;
+    }
+    
+    @include m.tablet {
+        columns: 4;
+    }
+    
     &__element {
-        margin-top: 3rem;
-        display: inline-block;
+        break-inside: avoid;
+        margin-bottom: 2rem;
     }
 
 
@@ -66,8 +74,8 @@
     }
 
     &__description {
-        width: 75%;
-        font-size: 1.4rem;
+        width: 90%;
+        font-size: 1.6rem;
         @include m.clip-text(2);
 
         span {
@@ -80,7 +88,8 @@
         text-transform: uppercase;
         color: v.$green;
         font-weight: bold;
-        float: right;
+        display: block;
+        text-align: end;
         margin: 1.5rem 1rem 0 0;
     }
 }

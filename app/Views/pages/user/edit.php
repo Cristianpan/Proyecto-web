@@ -50,24 +50,24 @@
             </div>
         </div>
         <div class="profile-form__grid">
-            <?= validation_show_error('name', 'alert-error') ?>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="name">Nombre(s)</label>
+                <?= validation_show_error('name', 'alert-error') ?>
                 <input type="text" class="profile-form__input" name="name" id="name" placeholder="Nombre" value="<?= old('name') ?? $userData['name'] ?? '' ?>">
             </div>
-            <?= validation_show_error('lastName', 'alert-error') ?>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="lastName">Apellido</label>
+                <?= validation_show_error('lastName', 'alert-error') ?>
                 <input type="text" class="profile-form__input" name="lastName" id="lastName" placeholder="Correo" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>">
             </div>
-            <?= validation_show_error('email', 'alert-error') ?>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="email">Correo electrónico</label>
+                <?= validation_show_error('email', 'alert-error') ?>
                 <input type="email" class="profile-form__input" name="email" id="email" placeholder="Correo" value="<?= old('email') ?? $userData['email'] ?? '' ?>">
             </div>
-            <?= validation_show_error('cardNumber', 'alert-error') ?>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="card">No. de Tarjeta</label>
+                <?= validation_show_error('cardNumber', 'alert-error') ?>
                 <input type="number" class="profile-form__input" name="cardNumber" id="card" placeholder="No. de Tarjeta" value="<?= old('cardNumber') ?? $userDetails['cardNumber'] ?? '' ?>">
             </div>
             <div class="profile-form__field profile-form__field--textarea">
@@ -96,6 +96,20 @@
     <?php if (!$personalBlocks ?? null) { ?>
         <p class="personal-block-none">¡Registra un nuevo bloque para que te conozcan mejor!</p>
     <?php } ?>
+</section>
+
+<section class="container catalog-edit">
+    <div class="catalog-edit__header">
+        <h2 class="catalog-edit__title">Agregar Obra</h2>
+        <a class="catalog-edit__add" href="<?= url_to('item-create', session()->get('user')['userId'])?>"><img src="/assets/images/plus-icon.svg" alt="add-icon"></a>
+    </div>
+    
+    <?php if (!$items ?? null) { ?>
+        <p class="personal-block-none">¡Registra una nueva obra!</p>
+    <?php } else {
+        echo view("/components/catalog");
+    } ?>
+
 </section>
 
 <div class="modal modal--none">

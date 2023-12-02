@@ -38,21 +38,34 @@ class ArtItemsMigrate extends Migration
             'description' => [
                 'type' => 'text', 
             ],
-            'measurements' => [
-                'type' => 'varchar', 
-                'constraint' => 100, 
+            'width' => [
+                'type' => 'decimal', 
+                'constraint' => 5,2, 
             ], 
+            'height' => [
+                'type' => 'decimal', 
+                'constraint' => 5,2
+            ],
             'localOrigin' => [
                 'type' => 'varchar', 
                 'constraint' => 100, 
-            ],
-            'onSale' => [
-                'type' => 'tinyint',  
             ],
             'price' => [
                 'type' => 'decimal', 
                 'constraint' => '10,2',
                 'default' => 0.00
+            ],
+            'image' => [
+                'type' => 'varchar', 
+                'constraint' => 36
+            ],
+            'isSold' => [
+                'type' => 'tinyint', 
+                'default' => 0,
+            ], 
+            'deletedAt' => [
+                'type' => 'datetime', 
+                'null' => true, 
             ]
         ]); 
 
