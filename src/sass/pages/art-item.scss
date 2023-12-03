@@ -54,7 +54,9 @@
         &--image {
             display: flex;
             align-items: center;
-            max-width: 45rem;
+            justify-content: center;
+            overflow: hidden;
+            width: 45rem;
             max-height: 60rem;
             overflow: hidden;
             position: relative;
@@ -192,5 +194,9 @@
                 background-color: darken(v.$blueGreen,10);
             }
         }
+    }
+
+    &__image{
+        width: 100%;
     }
 }
