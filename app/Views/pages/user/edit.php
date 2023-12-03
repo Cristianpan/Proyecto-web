@@ -58,7 +58,7 @@
             <div class="profile-form__field">
                 <label class="profile-form__label" for="lastName">Apellido</label>
                 <?= validation_show_error('lastName', 'alert-error') ?>
-                <input type="text" class="profile-form__input" name="lastName" id="lastName" placeholder="Correo" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>">
+                <input type="text" class="profile-form__input" name="lastName" id="lastName" placeholder="Apellido" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>">
             </div>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="email">Correo electrónico</label>
