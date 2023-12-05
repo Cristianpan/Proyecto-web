@@ -135,7 +135,6 @@ Este proyecto utiliza Velzon como panel de administración. Velzon está constru
 
 | Comando              | Descripción                                                                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `npm run images`     | Minimiza el tamaño de las imágenes png/jpg/jpeg y las convierte a formatos ligeros como webp y avif, guardando todos los formatos de imagen para producción.                                                              |
 | `npm run dev`        | Construye todos los activos necesarios para el proyecto, como Css, Js de todas las áreas (administración, pública y común) y al mismo tiempo, ejecuta el proyecto localmente. El servidor de desarrollo es accesible en http://localhost:8080. |
 
 
