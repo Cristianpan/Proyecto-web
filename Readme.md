@@ -13,7 +13,7 @@
 
 ![artzone-logo](https://i.imgur.com/CrwsAB7.png)
 
-ArtZone monorepo containing ArtZone app and internal libs.
+Art Zone es un proyecto para el curso de desarrollo web. 
 
 ## Apps
 
@@ -107,35 +107,21 @@ ArtZone monorepo containing ArtZone app and internal libs.
 
 ## Para comenzar
 
-Este proyecto utiliza Velzon como panel de administración. Velzon está construido con Bootstrap v5.3.0 y Codeigniter 4, con un código amigable para desarrolladores. Puedes cambiar fácilmente los diseños y modos utilizando esta plantilla.
-
-
-### Prerequisitos
-
-- **Wamp:** Asegúrate de tener [Wamp](https://www.wampserver.com/en/) o un software similar con PHP v8.2 o una versión superior instalada, así como MySQL 8.0.34 o una versión superior. Si ya tienes instalado Wamp o un software similar en tu computadora, puedes omitir este paso.
-- **Composer:** Asegúrate de tener [Composer](https://getcomposer.org/) instalado y funcionando en tu computadora. Si ya tienes instalado Composer en tu computadora, puedes omitir este paso.
-- **Node:** Asegúrate de tener [Node](https://nodejs.org/es) instalado y funcionando en tu computadora. Si ya tienes instalado Node en tu computadora, puedes omitir este paso.
-- Asegúrate de configurar tu archivo `.env` y la base de datos.
-
+### Requisitos previos
+- **Composer** Asegúrate de tener [Composer](https://getcomposer.org/) instalado y funcionando en tu computadora.
+- **Node** Asegúrate de tener [Node](https://nodejs.org/es) instalado y funcionando en tu computadora.
 
 ### Instalación
+| Comando            | Descripción                                                                                                                                                                               |
+| ------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `composer install` | Esto instalará todos los paquetes necesarios en la carpeta `vendor`. Si recibes algún error al ejecutar el comando `composer install`, no te preocupes, por favor continúa con: `composer update` |
+| `npm install`      | Esto instalará todos los paquetes necesarios en la carpeta `node_modules`.        
 
-| Comando             | Descripción                                                                                                                                                                               |
-| ------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `composer install`  | Esto instalará todos los paquetes necesarios en la carpeta `vendor`. Si recibes algún error al ejecutar el comando `composer install`, no te preocupes, continúa con: `composer update`.     |
-| `npm install`       | Esto instalará todos los paquetes necesarios en la carpeta `node_modules`.                                                                                                                 |
+### Desarrollo
+Utiliza `npm run dev` para poder compilar todos los recursos necesarios para el correcto funcionamiento del proyecto.
 
-### Construcción
+### Compilación
+Utiliza `npm run build` para poder compilar todos los recursos necesarios para el correcto funcionamiento del proyecto. Esto es útil si deseas compilar los recursos para producción.
 
-| Comando           | Descripción                                                                                  |
-| ----------------- | :------------------------------------------------------------------------------------------- |
-| `npm run build`   | Construye todos los activos del proyecto, como Css, Js y archivos como imágenes listas para producción. |
-
-### Ejecución Local
-
-| Comando              | Descripción                                                                                                                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `npm run dev`        | Construye todos los activos necesarios para el proyecto, como Css, Js de todas las áreas (administración, pública y común) y al mismo tiempo, ejecuta el proyecto localmente. El servidor de desarrollo es accesible en http://localhost:8080. |
-
-
-### Links
+### Local
+Utiliza `php spark serve` para ejecutar el proyecto localmente. El servidor de desarrollo es accesible en http://localhost:8080.
