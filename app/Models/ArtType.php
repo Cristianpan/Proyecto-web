@@ -6,12 +6,13 @@ use CodeIgniter\Model;
 
 class ArtType extends Model
 {
-    protected $DBGroup          = 'default';
     protected $table            = 'art_types';
     protected $primaryKey       = 'artTypeId';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
     protected $allowedFields    = ['artType'];
+
+    public function getArtTypes()
+    {
+        $db = $this->db->table('all_art_types');
+        return $db->get()->getResultArray();
+    }
 }

@@ -25,6 +25,9 @@ class Sale extends Model
             ->findAll();
             $sales[$key]['artItems'] = $saleDetails;
 
+            $sales[$key]['total'] = array_reduce($saleDetails, function ($carry, $item) {
+                return $carry + floatval($item['price']) * 1.1;
+            }, 0);
         }
         return $sales;
     }

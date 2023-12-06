@@ -17,6 +17,6 @@ class CtrlOrderAndSales extends BaseController
     public function viewSale(String $userId)
     {
         $sale = (new Sale())->getSalesByUserId($userId); 
-        return view('pages/orderAndSale/orders', ['orders' => $sale]);
+        return view('pages/orderAndSale/sales', ['orders' => $sale]);
     }
 }

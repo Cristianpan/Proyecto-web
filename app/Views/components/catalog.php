@@ -7,6 +7,7 @@
 
             <div class="gallery__info">
                 <p class="gallery__description"><?= $item['shortDescription']?></p>
+                <p class="gallery__status gallery__status--<?= $item['isSold'] === '1' ? "sold" : 'onSale' ?>"><?= $item['isSold'] == '1' ? 'Vendido' : 'En Venta'?></p>
             </div>
         </div>
     <?php endforeach ?>

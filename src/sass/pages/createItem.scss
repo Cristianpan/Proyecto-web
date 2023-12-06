@@ -181,11 +181,13 @@
 .buttons {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     margin-top: 3.5rem;
     gap: 2rem;
 
     &__button {
-        flex: 1;
+        flex: 1 0 33%;
         padding: 1.6rem 0;
         text-align: center;
         display: inline-block;
@@ -194,14 +196,23 @@
         font-weight: 500;
         cursor: pointer;
         color: v.$white;
+        transition: background-color 0.3s;
 
-        &--submit {
+        &--submit, &--delete {
             background-color: v.$brown;
+
+            &:hover {
+                background-color: darken(v.$brown, 20);
+            }
         }
-        
+
         &--cancel {
             background-color: transparent;
             border: solid 0.2rem v.$brown;
+
+            &:hover {
+                background-color: lighten(v.$dark, 8);
+            }
         }
     }
 }

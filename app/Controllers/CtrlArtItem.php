@@ -36,8 +36,8 @@ class CtrlArtItem extends BaseController
         }
 
         return view("pages/item/create", [
-            'artStyles' => (new ArtStyle())->findAll(),
-            'artTypes' => (new ArtType())->findAll(),
+            'artStyles' => (new ArtStyle())->getArtStyles(),
+            'artTypes' => (new ArtType())->getArtTypes(),
             'artItemFiles' => $this->configArtItems->getConfig(),
         ]);
     }
@@ -121,11 +121,11 @@ class CtrlArtItem extends BaseController
             $foundArtItem = (new ArtItem())->find($artItemId);
 
             if (!$foundArtItem) {
-                throw new ArtItemNotFoundException('Para que la obra que estas buscando ya no existe');
+                throw new ArtItemNotFoundException('Parece que la obra que estas buscando ya no existe');
             }
 
             if ($foundArtItem['userId'] !== $userId) {
-                throw new UnauthorizedActionException('No tiene permisos para eliminar este artículo.');
+                throw new UnauthorizedActionException('No tiene permisos para eliminar esta obra.');
             }
 
             $itemData['image'] = $itemData['artItemFile'][0];
@@ -180,14 +180,16 @@ class CtrlArtItem extends BaseController
             if ($artItem['userId'] !== $userId) {
                 throw new UnauthorizedActionException('No tiene permisos para eliminar este artículo.');
             }
+            
             $artItemModel->delete($artItemId);
-
+            
             $response = [
                 'title' => '¡Eliminación exitosa!',
                 'message' => 'Los datos de la obra han sido eliminados correctamente',
                 'type' => "success",
             ];
-            return redirect()->to("/profile/$userId/catalog")->with('response', $response);
+            
+            return redirect()->to("/profile/$userId")->with('response', $response);
         } catch (ArtItemNotFoundException | UnauthorizedActionException $th) {
             $response = [
                 'title' => '¡Ops! Ha ocurrido un error',

@@ -20,7 +20,7 @@
 
     <?php foreach ($orders as $key => $order) : ?>
         <div class="order-card">
-            <div id="<?= $order['saleId'] ?>" class="order-card__body order-card__body--none">
+            <div id="<?= $order['orderId'] ?>" class="order-card__body order-card__body--none">
                 <?php
                 $total = 0; 
                 foreach ($order['artItems'] as $artItem) : 
@@ -32,8 +32,8 @@
                                 <img src="/api/files/load?file=<?= $artItem['image'] ?>" alt="Imagen producto">
                             </div>
                             <div class="order-card__product-data">
-                                <p class="order-card__product-title"><?= $artItem['name'] ?></p>
-                                <p class="order-card__product-autor"><?= $artItem['userName'] . " " . $artItem['lastName'] ?></p>
+                                <p class="order-card__product-title">Titulo: <?= $artItem['name'] ?></p>
+                                <p class="order-card__product-autor">Autor: <?= $artItem['userName'] . " " . $artItem['lastName'] ?></p>
                                 <p class="order-card__product-price">$<?= $artItem['price'] ?></p>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
             <div class="order-card__footer">
                 <p class="order-card__text"><span>Fecha de compra:</span> <?= (new DateTime($order['date']))->format("d/m/Y") ?></p>
                 <p class="order-card__text"><span>Costo Total:</span> $<?= $total?></p>
-                <button data-orderId="<?= $order['saleId'] ?>" class="order-card__button">Ver más</button>
+                <button data-orderId="<?= $order['orderId'] ?>" class="order-card__button">Ver más</button>
             </div>
         </div>
     <?php endforeach ?>

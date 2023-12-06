@@ -56,8 +56,8 @@
             </div>
 
             <div class="order-card__footer">
-                <p class="order-card__text"><span>Fecha de compra:</span> <?= (new DateTime($order['date']))->format("d/m/Y") ?></p>
-                <p class="order-card__text"><span>Costo Total:</span> $<?= $order['total'] ?></p>
+                <p class="order-card__text"><span>Fecha de Venta:</span> <?= (new DateTime($order['date']))->format("d/m/Y") ?></p>
+                <p class="order-card__text"><span>Venta Total:</span> $<?= $order['total'] ?></p>
                 <button data-orderId="<?= $order['saleId'] ?>" class="order-card__button">Ver más</button>
             </div>
         </div>

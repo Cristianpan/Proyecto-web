@@ -39,7 +39,7 @@ class CtrlUserProfile extends BaseController
         $personalBlocks = (new PersonalBlock())->where('userId', $userId)->findAll();
         $userData = (new User())->where('userId', $userId)->first();
         $userDetails = (new UserDetails())->where('userId', $userId)->first();
-        $items = (new ArtItem())->select('artItemId, image,userId,shortDescription')->where('userId', $userId)->findAll();
+        $items = (new ArtItem())->select('artItemId, isSold, image,userId,shortDescription')->where('userId', $userId)->findAll();
 
 
         if (session()->has('clientData')) {

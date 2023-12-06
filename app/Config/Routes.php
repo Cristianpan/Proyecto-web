@@ -32,7 +32,6 @@ $routes->delete('/profile/(:segment)/personalBlock/(:segment)', [CtrlPersonalBlo
 
 //Orders and sales
 $routes->get('/profile/(:segment)/orders', [CtrlOrderAndSales::class, 'viewOrder/$1'], ['as' => 'orders']); 
-//$routes->get('/profile/(:segment)/orders', [CtrlOrderAndSales::class, 'order/$1'], ['as' => 'orders']); 
 $routes->get('/profile/(:segment)/sales', [CtrlOrderAndSales::class, 'viewSale/$1'], ['as' => 'sales']); 
 
 
@@ -41,6 +40,7 @@ $routes->get('/profile/(:segment)/item', [CtrlArtItem::class, 'viewCreate'], ['a
 $routes->post('/profile/(:segment)/item', [CtrlArtItem::class, 'create/$1'], ['as' => 'item-create']);
 $routes->get('/profile/(:segment)/item/(:segment)', [CtrlArtItem::class, 'viewEdit/$1/$2'], ['as' => 'item-edit']);
 $routes->post('/profile/(:segment)/item/(:segment)', [CtrlArtItem::class, 'edit/$1/$2'], ['as' => 'item-edit']);
+$routes->get('/profile/(:segment)/item/(:segment)/delete', [CtrlArtItem::class, 'delete/$1/$2'], ['as' => 'item-delete']);
 
 
 //Shop

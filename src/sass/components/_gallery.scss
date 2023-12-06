@@ -87,13 +87,19 @@
         }
     }
 
-    &__available {
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        color: v.$green;
-        font-weight: bold;
+    &__status {
         display: block;
+        font-size: 2rem;
+        text-transform: uppercase;
         text-align: end;
-        margin: 1.5rem 1rem 0 0;
+        font-weight: bold;
+
+        &--sold {
+            color: v.$red;
+        }
+
+        &--onSale {
+            color: v.$green;
+        }
     }
 }
