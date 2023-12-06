@@ -1,9 +1,9 @@
 <?php
 
 use App\Controllers\CtrlApiFiles;
-use App\Controllers\CtrlArtCatalog;
 use App\Controllers\CtrlArtItem;
 use App\Controllers\CtrlAuth;
+use App\Controllers\CtrlOrderAndSales;
 use App\Controllers\CtrlPersonalBlock;
 use App\Controllers\CtrlStore;
 use App\Controllers\CtrlUserProfile;
@@ -30,6 +30,11 @@ $routes->post('/profile/(:segment)/personalBlock', [CtrlPersonalBlock::class, 'c
 $routes->put('/profile/(:segment)/personalBlock/(:segment)', [CtrlPersonalBlock::class, 'update/$1/$2'], ['as' => 'personal-block']);
 $routes->delete('/profile/(:segment)/personalBlock/(:segment)', [CtrlPersonalBlock::class, 'delete/$1/$2'], ['as' => 'personal-block']);
 
+//Orders and sales
+$routes->get('/profile/(:segment)/orders', [CtrlOrderAndSales::class, 'viewOrder/$1'], ['as' => 'orders']); 
+//$routes->get('/profile/(:segment)/orders', [CtrlOrderAndSales::class, 'order/$1'], ['as' => 'orders']); 
+$routes->get('/profile/(:segment)/sales', [CtrlOrderAndSales::class, 'viewSale/$1'], ['as' => 'sales']); 
+
 
 //items
 $routes->get('/profile/(:segment)/item', [CtrlArtItem::class, 'viewCreate'], ['as' => 'item-create']);
@@ -40,10 +45,10 @@ $routes->post('/profile/(:segment)/item/(:segment)', [CtrlArtItem::class, 'edit/
 
 //Shop
 $routes->get('/', [CtrlStore::class, 'index'], ['as' => 'store']); 
-$routes->get('/artItem/(:segment)', [CtrlStore::class, 'viewItem/$1'], ['as'=> 'item']); 
+$routes->get('/store/artItem/(:segment)', [CtrlStore::class, 'viewItem/$1'], ['as'=> 'item']); 
 $routes->get('/store/shoppingCart', [CtrlStore::class, 'viewCart'], ['as' => 'shoppingCart']); 
-$routes->get('/payment', 'CtrlShop::viewPayment'); 
-$routes->post('/payment', 'CtrlShop::viewPayment'); 
+$routes->get('/store/shoppingCart', [CtrlStore::class, 'viewCart'], ['as' => 'shoppingCart']); 
+$routes->post('/store/payment', [CtrlStore::class, 'payment'], ['as' => 'shoppingCart']); 
 
 
 //Api files

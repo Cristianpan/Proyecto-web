@@ -11,7 +11,7 @@ class ArtItemsMigrate extends Migration
         $this->forge->addField([
             'artItemId' => [
                 'type' => 'varchar', 
-                'constraint' =>  32,  
+                'constraint' =>  36,  
             ], 
             'userId' => [
                 'type' => 'varchar', 
@@ -40,11 +40,11 @@ class ArtItemsMigrate extends Migration
             ],
             'width' => [
                 'type' => 'decimal', 
-                'constraint' => 5,2, 
+                'constraint' => '5,2', 
             ], 
             'height' => [
                 'type' => 'decimal', 
-                'constraint' => 5,2
+                'constraint' => '5,2'
             ],
             'localOrigin' => [
                 'type' => 'varchar', 

@@ -112,7 +112,7 @@
 
 </section>
 
-<div class="modal modal--none">
+<div class="modal modal--flex modal--none">
     <div class="modal__content">
         <h2 class="modal__title">Agregar Nuevo Bloque</h2>
         <form class="modal-form" method="post">

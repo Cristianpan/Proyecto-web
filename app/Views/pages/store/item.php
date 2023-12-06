@@ -9,6 +9,7 @@
 
 <?php $this->section("js") ?>
 <script src="/assets/js/artItem.min.js"></script>
+<script src="/assets/js/paymentForm.min.js"></script>
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
@@ -74,10 +75,14 @@
         </div>
 
 
-        <div class="art-item__buttons">
-            <a href="#" class="art-item__button art-item__button--buy">Comprar</a>
-            <button class="art-item__button art-item__button--add-cart" data-artItemId="<?= $artItem['artItemId'] ?>">Agregar al carrito</button>
-        </div>
+        <?php if ($artItem['userId'] !== session()->get('user')['userId'] && $artItem['isSold'] != "1") : ?>
+            <div class="art-item__buttons">
+                <button data-userId="<?=$artItem['userId']?>" data-price="<?= $artItem['price'] ?>" data-artItemId="<?= $artItem['artItemId'] ?>" class="art-item__button art-item__button--buy">Comprar</button>
+                <button class="art-item__button art-item__button--add-cart" data-userId="<?= $artItem['userId']?>" data-artItemId="<?= $artItem['artItemId'] ?>">Agregar al carrito</button>
+            </div>
+        <?php endif ?>
     </div>
 </div>
+
+<?= view("components/paymentForm", ['price' => $artItem['price']]) ?>
 <?php $this->endSection() ?>

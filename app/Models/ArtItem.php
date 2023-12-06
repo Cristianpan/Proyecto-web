@@ -9,7 +9,7 @@ class ArtItem extends Model
 {
     protected $table            = 'art_items';
     protected $primaryKey       = 'artItemId';
-    protected $allowedFields    = ['userId', 'artStyleId', 'artTypeId', 'name', 'materials', 'shortDescription', 'description', 'width', 'height', 'localOrigin', 'price', 'image'];
+    protected $allowedFields    = ['userId', 'artStyleId', 'artTypeId', 'name', 'materials', 'shortDescription', 'description', 'width', 'height', 'localOrigin', 'price', 'image', 'isSold'];
     protected $beforeInsert   = ['setId'];
     protected $useSoftDeletes = true;
 
@@ -36,6 +36,21 @@ class ArtItem extends Model
 
         return $items;
     }
+    public function getItemsByLike(String $search)
+    {
+        $items = $this->select("
+        CONCAT(users.name, ' ',lastName) as autor, 
+        artItemId, 
+        image, 
+        shortDescription
+    ")
+            ->join('users', 'users.userId = art_items.userId')
+            ->like('art_items.name', "%$search%")
+            ->orderBy('RAND()')
+            ->findAll();
+
+        return $items;
+    }
 
     public function getItemById(String $id)
     {
@@ -52,6 +67,7 @@ class ArtItem extends Model
                 artType,
                 description, 
                 materials,
+                isSold, 
             ")
             ->join('users', 'users.userId = art_items.userId')
             ->join('art_styles', 'art_items.artStyleId = art_styles.artStyleId')

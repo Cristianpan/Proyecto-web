@@ -1,6 +1,6 @@
 <?php $this->extend("templates/layout") ?>
 <?php $this->section("title") ?>
-<title>Art Zone | Cart</title>
+<title>Art Zone | Carrito</title>
 <?php $this->endSection() ?>
 
 <?php $this->section("css") ?>
@@ -9,6 +9,7 @@
 
 <?php $this->section("js") ?>
 <script src="/assets/js/cart.min.js"></script>
+<script src="/assets/js/paymentForm.min.js"></script>
 <?php $this->endSection() ?>
 
 <?php $this->section("content") ?>
@@ -74,8 +75,9 @@
                 </tbody>
             </table>
 
-            <a href="#" class="payment__button">Pagar</a>
+            <button class="payment__button">Pagar</button>
         </div>
     </section>
 </div>
+<?= view("components/paymentForm", ['price' => 0]) ?>
 <?php $this->endSection() ?>

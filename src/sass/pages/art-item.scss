@@ -1,5 +1,6 @@
 @use "../base/mixins" as m;
 @use "../base/variables" as v;
+@use "../components/payment";
 
 .art-item {
     @include m.tablet {

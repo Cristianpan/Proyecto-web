@@ -1,6 +1,8 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v; 
 @use '../components/table';
+@use "../components/payment";
+
 
 .cart-item {
     @include m.tablet {
@@ -25,6 +27,10 @@
         overflow: hidden;
     }
 
+    &__btn {
+        width: 4rem;
+    }
+
     &__btn-close {
         width: 3rem;
     }
@@ -47,6 +53,7 @@
         
         &--autor {
             font-weight: bold;
+            text-align: left;
         }
 
         &-container {
@@ -125,9 +132,15 @@
         border-radius: 1rem;
         transition: background-color 0.3s;
         letter-spacing: 1px;
-
+        
         &:hover{
             background-color: darken(v.$blueGreen,20);
+        }
+        
+        &:disabled {
+            background-color: v.$blueGreen;
+            opacity: 0.8;
+            cursor: not-allowed;
         }
     }
 }
