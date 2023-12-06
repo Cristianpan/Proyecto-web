@@ -5,6 +5,8 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Faker\Core\Uuid;
 
+use function PHPUnit\Framework\isNull;
+
 class ArtItem extends Model
 {
     protected $table            = 'art_items';
@@ -42,14 +44,25 @@ class ArtItem extends Model
         CONCAT(users.name, ' ',lastName) as autor, 
         artItemId, 
         image, 
-        shortDescription
+        shortDescription, 
+        deletedAt
     ")
             ->join('users', 'users.userId = art_items.userId')
             ->like('art_items.name', "%$search%")
+            ->orLike('users.name', "%$search%")
+            ->orLike('users.lastName', "%$search%")
+            ->groupBy('artItemId')
             ->orderBy('RAND()')
             ->findAll();
 
+        $items = array_filter($items, function ($element){
+            if ($element['deletedAt'] == null) {
+                return $element; 
+            }
+        }); 
+        
         return $items;
+
     }
 
     public function getItemById(String $id)

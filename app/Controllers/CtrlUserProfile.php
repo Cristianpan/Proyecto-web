@@ -11,6 +11,7 @@ use App\Models\PersonalBlock;
 use App\Models\User;
 use App\Models\UserDetails;
 use App\Utils\FileManager;
+use App\Utils\FilterHtml;
 use App\Validators\UserEditValidation;
 
 class CtrlUserProfile extends BaseController
@@ -68,6 +69,8 @@ class CtrlUserProfile extends BaseController
             $userData = $this->request->getPost();
             $validator = new UserEditValidation();
             $validator->validateInputs($userData);
+
+            $userData = FilterHtml::filterHtml($userData); 
 
             (new User())->update($userId, $userData);
 

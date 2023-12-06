@@ -11,6 +11,7 @@ use App\Models\ArtItem;
 use App\Models\ArtStyle;
 use App\Models\ArtType;
 use App\Utils\FileManager;
+use App\Utils\FilterHtml;
 use App\Validators\ArtItemValidation;
 use Throwable;
 
@@ -84,6 +85,8 @@ class CtrlArtItem extends BaseController
             $artItemValidation = new ArtItemValidation();
             $artItemValidation->validateInputs($itemData);
 
+            $itemData = FilterHtml::filterHtml($itemData);
+
             $itemData['userId'] = $userId;
             $itemData['image'] = $itemData['artItemFile'][0];
 
@@ -117,6 +120,7 @@ class CtrlArtItem extends BaseController
 
             $artItemValidation = new  ArtItemValidation();
             $artItemValidation->validateInputs($itemData);
+            $itemData = FilterHtml::filterHtml($itemData);
 
             $foundArtItem = (new ArtItem())->find($artItemId);
 

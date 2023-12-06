@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Errors\InvalidDataInputException;
 use App\Models\User;
 use App\Models\UserDetails;
+use App\Utils\FilterHtml;
 use App\Validators\LoginValidation;
 use App\Validators\SignupValidation;
 use Faker\Core\Uuid;
@@ -29,6 +30,7 @@ class CtrlAuth extends BaseController
             $userData = $this->request->getPost();
             $signupValidator =  new SignupValidation();
             $signupValidator->validateInputs($userData);
+            $userData = FilterHtml::filterHtml($userData); 
 
             $userData['userId'] = (new Uuid())->uuid3();
 

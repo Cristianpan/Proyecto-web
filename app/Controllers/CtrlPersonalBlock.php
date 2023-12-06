@@ -6,11 +6,10 @@ use App\Controllers\BaseController;
 use App\Errors\InvalidDataInputException;
 use App\Errors\PersonalBlockNotFoundException;
 use App\Models\PersonalBlock;
+use App\Utils\FilterHtml;
 use App\Validators\PersonalBlockValidation;
 use CodeIgniter\HTTP\Response;
 use Faker\Core\Uuid;
-use Throwable;
-
 class CtrlPersonalBlock extends BaseController
 {
     public function create(String $userId)
@@ -24,8 +23,7 @@ class CtrlPersonalBlock extends BaseController
             $dataPersonalBlock['userId'] = $userId;
             $dataPersonalBlock['personalBlockId'] = (new Uuid())->uuid3();
 
-            //return $this->response->setJSON($dataPersonalBlock);
-
+            $dataPersonalBlock = FilterHtml::filterHtml($dataPersonalBlock); 
             $personalBlock->insert($dataPersonalBlock);
 
             $body = [
@@ -61,6 +59,8 @@ class CtrlPersonalBlock extends BaseController
                 throw new PersonalBlockNotFoundException('No existe el bloque personalizado');
 
             }
+
+            $dataPersonalBlock = FilterHtml::filterHtml($dataPersonalBlock); 
 
             $personalBlock->update($personalBlockId, $dataPersonalBlock);
 

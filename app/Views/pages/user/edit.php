@@ -31,7 +31,7 @@
                 </div>
                 <div class="profile-form__field profile-form__field--select">
                     <?= validation_show_error('occupationId', 'alert-error') ?>
-                    <select id="profesion" name="occupationId" class="profile-form__input profile-form__input--select">
+                    <select id="profesion" name="occupationId" class="profile-form__input profile-form__input--select" required>
                         <option value="">Ocupación</option>
                         <?php foreach ($occupations as $occupation) :
                             $auxOccupation = old('occupationId') ?? $userDetails['occupationId'] ?? '';
@@ -53,22 +53,22 @@
             <div class="profile-form__field">
                 <label class="profile-form__label" for="name">Nombre(s)</label>
                 <?= validation_show_error('name', 'alert-error') ?>
-                <input type="text" class="profile-form__input" name="name" id="name" placeholder="Nombre" value="<?= old('name') ?? $userData['name'] ?? '' ?>">
+                <input type="text" class="profile-form__input" name="name" id="name" placeholder="Nombre" value="<?= old('name') ?? $userData['name'] ?? '' ?>" required>
             </div>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="lastName">Apellido</label>
                 <?= validation_show_error('lastName', 'alert-error') ?>
-                <input type="text" class="profile-form__input" name="lastName" id="lastName" placeholder="Apellido" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>">
+                <input type="text" class="profile-form__input" name="lastName" id="lastName" placeholder="Apellido" value="<?= old('lastName') ?? $userData['lastName'] ?? '' ?>" required>
             </div>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="email">Correo electrónico</label>
                 <?= validation_show_error('email', 'alert-error') ?>
-                <input type="email" class="profile-form__input" name="email" id="email" placeholder="Correo" value="<?= old('email') ?? $userData['email'] ?? '' ?>">
+                <input type="email" class="profile-form__input" name="email" id="email" placeholder="Correo" value="<?= old('email') ?? $userData['email'] ?? '' ?>" required>
             </div>
             <div class="profile-form__field">
                 <label class="profile-form__label" for="card">No. de Tarjeta</label>
                 <?= validation_show_error('cardNumber', 'alert-error') ?>
-                <input type="number" class="profile-form__input" name="cardNumber" id="card" placeholder="No. de Tarjeta" value="<?= old('cardNumber') ?? $userDetails['cardNumber'] ?? '' ?>">
+                <input type="number" class="profile-form__input" name="cardNumber" id="card" placeholder="No. de Tarjeta" value="<?= old('cardNumber') ?? $userDetails['cardNumber'] ?? ''?>" required minlength="16" maxlength="16">
             </div>
             <div class="profile-form__field profile-form__field--textarea">
                 <label for="description" class="profile-form__label">Descripción</label>

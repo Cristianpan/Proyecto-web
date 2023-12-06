@@ -8,7 +8,7 @@ $user = session()->get('user');
     <div class="header__grid">
         <form class="search" action="/">
             <label for="search" class="search__button"><img src="/assets/images/search-icon.svg" class="search__icon"></label>
-            <input type="search" class="search__input" name="search" id="search" placeholder="Escriba el nombre de la obra">
+            <input type="search" class="search__input" name="search" id="search" placeholder="Escriba el nombre de la obra o del artista" value="<?= session()->getFlashdata('search') ?? ''?>">
         </form>
 
         <nav class="navigation" id="navigation">
