@@ -9,7 +9,7 @@ document
 
 async function processPayment(e) {
   e.preventDefault();
-
+  removeErrorMessages();
   const result = await Swal.fire({
     html: `<h1 class="sweet__logo">Art Zone</h1>
           <h2 class="sweet__title sweet__title--success">Realizar Compra</h2>
@@ -79,6 +79,7 @@ function getFormDataAsJson(form) {
   return jsonData;
 }
 
+let alerts = []
 function generateErrorMessages(errorMessages) {
   for (const key in errorMessages) {
     const inputReference = document.getElementsByName(key)[0];
@@ -86,10 +87,13 @@ function generateErrorMessages(errorMessages) {
     alert.classList.add("alert");
     alert.classList.add("alert-danger");
     alert.textContent = errorMessages[key];
-    inputReference.before(alert);
 
-    setTimeout(() => {
-      alert.remove();
-    }, 3000);
+    alerts = [...alert, alert];
+    inputReference.before(alert);
   }
+}
+
+function  removeErrorMessages() {
+  alerts.forEach(alert => alert.remove()); 
+  alerts = [];
 }

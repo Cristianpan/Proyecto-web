@@ -69,6 +69,7 @@ class CtrlUserProfile extends BaseController
             $userData = $this->request->getPost();
             $validator = new UserEditValidation();
             $validator->validateInputs($userData);
+            $validator->validateEmail($userData['email']);
 
             $userData = FilterHtml::filterHtml($userData); 
 
