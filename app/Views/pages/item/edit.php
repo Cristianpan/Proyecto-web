@@ -18,13 +18,13 @@
 <?php $this->section("content") ?>
 <main class="item">
     <h2 class="item__title">Editar Obra</h2>
-    <form class="item-form" method="post">
-            <?= view("pages/item/form") ?>
-            <div class="buttons">
-                <input type="submit" class="buttons__button buttons__button--submit" value="Editar">
-                <a  href="<?= url_to('item-delete', session()->get('user')['userId'], $item['artItemId']) ?>" class="buttons__button buttons__button--delete">Eliminar</a>
-                <a href="<?= url_to('item-edit', session()->get('user')['userId'], $item['artItemId']) ?>" class="buttons__button buttons__button--cancel">Cancelar</a>
-            </div>
+    <form class="item-form" <?= ($item['isSold'] ?? false) ? '' : 'method="post"' ?>">
+        <?= view("pages/item/form") ?>
+        <div class="buttons">
+            <input type="submit" class="buttons__button buttons__button--submit" <?= ($item['isSold'] ?? false) ? 'disabled' : '' ?> value="Editar">
+            <a href="<?= url_to('item-delete', session()->get('user')['userId'], $item['artItemId']) ?>" class="buttons__button buttons__button--delete">Eliminar</a>
+            <a href="<?= url_to('item-edit', session()->get('user')['userId'], $item['artItemId']) ?>" class="buttons__button buttons__button--cancel">Cancelar</a>
+        </div>
         </div>
     </form>
 </main>

@@ -47,7 +47,6 @@ $routes->get('/profile/(:segment)/item/(:segment)/delete', [CtrlArtItem::class, 
 $routes->get('/', [CtrlStore::class, 'index'], ['as' => 'store']); 
 $routes->get('/store/artItem/(:segment)', [CtrlStore::class, 'viewItem/$1'], ['as'=> 'item']); 
 $routes->get('/store/shoppingCart', [CtrlStore::class, 'viewCart'], ['as' => 'shoppingCart']); 
-$routes->get('/store/shoppingCart', [CtrlStore::class, 'viewCart'], ['as' => 'shoppingCart']); 
 $routes->post('/store/payment', [CtrlStore::class, 'payment'], ['as' => 'shoppingCart']); 
 
 
